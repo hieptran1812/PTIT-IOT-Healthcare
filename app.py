@@ -20,6 +20,14 @@ def user_profile():
 def register():
     return render_template('register.html')
 
+@app.route('/nhiptho', methods=['GET', 'POST'])
+def nhiptho():
+    return render_template('nhiptho.html')
+
+@app.route('/nhiptho/hieptran1812', methods=['GET', 'POST'])
+def test():
+    return render_template('hieptran1812.html')
+
 @app.route("/", methods=['POST'])
 def login():
     users = database.db.users

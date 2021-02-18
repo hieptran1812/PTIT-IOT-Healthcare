@@ -36,7 +36,13 @@
     <header
       class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
     >
-    <img src="/static/logo.jpg" class="rounded" alt="logo" width="245" height="48" />
+      <img
+        src="/static/logo.jpg"
+        class="rounded"
+        alt="logo"
+        width="245"
+        height="48"
+      />
       <button
         class="navbar-toggler position-absolute d-md-none collapsed"
         type="button"
@@ -139,6 +145,11 @@
               </li>
             </ul>
           </div>
+          <div class="position-relative ms-3" style="height: 55%">
+            <p class="position-absolute bottom-0">
+              © 2020 PTIT.AI. All rights reserved.
+            </p>
+          </div>
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -148,18 +159,23 @@
             <h1 class="h2">Dashboard</h1>
           </div>
 
-          <canvas
-            class="my-4 w-100"
-            id="myChart"
-            width="900"
-            height="380"
-          ></canvas>
+          <div
+            class="chart-container"
+            style="
+              position: relative;
+              height: 20vh;
+              width: 40vw;
+              margin-bottom: 25vh;
+            "
+          >
+            <canvas class="my-4 w-100" id="myChart"></canvas>
+          </div>
 
-          <h2>Danh sách người dùng</h2>
+          <h2 class="border-bottom pb-4">Danh sách người dùng</h2>
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
-                <tr>
+                <tr style="pointer-events: none">
                   <th>STT</th>
                   <th>Username</th>
                   <th>Họ và tên</th>
@@ -169,17 +185,30 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr onclick="window.location.assign('nhiptho/hieptran1812');">
                   <td>1</td>
                   <td>hieptran1812</td>
                   <td>Trần Quang Hiệp</td>
                   <td>0987938320</td>
                   <td>admin</td>
                   <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                      <a type="button" class="btn btn-success btn-sm" href="/user_profile">Thông tin</a>
-                      <button type="button" class="btn btn-warning btn-sm">Sửa</button>
-                      <button type="button" class="btn btn-danger btn-sm">Xóa</button>
+                    <div
+                      class="btn-group"
+                      role="group"
+                      aria-label="Basic mixed styles example"
+                    >
+                      <a
+                        type="button"
+                        class="btn btn-success btn-sm"
+                        href="/user_profile"
+                        >Thông tin</a
+                      >
+                      <button type="button" class="btn btn-warning btn-sm">
+                        Sửa
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm">
+                        Xóa
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -190,10 +219,20 @@
                   <td>visual</td>
                   <td>Bác sĩ</td>
                   <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                      <button type="button" class="btn btn-success btn-sm">Thông tin</button>
-                      <button type="button" class="btn btn-warning btn-sm">Sửa</button>
-                      <button type="button" class="btn btn-danger btn-sm">Xóa</button>
+                    <div
+                      class="btn-group"
+                      role="group"
+                      aria-label="Basic mixed styles example"
+                    >
+                      <button type="button" class="btn btn-success btn-sm">
+                        Thông tin
+                      </button>
+                      <button type="button" class="btn btn-warning btn-sm">
+                        Sửa
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm">
+                        Xóa
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -204,10 +243,20 @@
                   <td>dashboard</td>
                   <td>Bác sĩ</td>
                   <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                      <button type="button" class="btn btn-success btn-sm">Thông tin</button>
-                      <button type="button" class="btn btn-warning btn-sm">Sửa</button>
-                      <button type="button" class="btn btn-danger btn-sm">Xóa</button>
+                    <div
+                      class="btn-group"
+                      role="group"
+                      aria-label="Basic mixed styles example"
+                    >
+                      <button type="button" class="btn btn-success btn-sm">
+                        Thông tin
+                      </button>
+                      <button type="button" class="btn btn-warning btn-sm">
+                        Sửa
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm">
+                        Xóa
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -218,10 +267,20 @@
                   <td>illustrative</td>
                   <td>Bác sĩ</td>
                   <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                      <button type="button" class="btn btn-success btn-sm">Thông tin</button>
-                      <button type="button" class="btn btn-warning btn-sm">Sửa</button>
-                      <button type="button" class="btn btn-danger btn-sm">Xóa</button>
+                    <div
+                      class="btn-group"
+                      role="group"
+                      aria-label="Basic mixed styles example"
+                    >
+                      <button type="button" class="btn btn-success btn-sm">
+                        Thông tin
+                      </button>
+                      <button type="button" class="btn btn-warning btn-sm">
+                        Sửa
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm">
+                        Xóa
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -232,10 +291,20 @@
                   <td>layout</td>
                   <td>Bác sĩ</td>
                   <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                      <button type="button" class="btn btn-success btn-sm">Thông tin</button>
-                      <button type="button" class="btn btn-warning btn-sm">Sửa</button>
-                      <button type="button" class="btn btn-danger btn-sm">Xóa</button>
+                    <div
+                      class="btn-group"
+                      role="group"
+                      aria-label="Basic mixed styles example"
+                    >
+                      <button type="button" class="btn btn-success btn-sm">
+                        Thông tin
+                      </button>
+                      <button type="button" class="btn btn-warning btn-sm">
+                        Sửa
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm">
+                        Xóa
+                      </button>
                     </div>
                   </td>
                 </tr>

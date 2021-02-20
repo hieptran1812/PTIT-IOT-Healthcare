@@ -1,8 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import database #database from mongodb
+from user.models import User
 import bcrypt
 
 app = Flask(__name__)
+app.secret_key = "ptit"
 
 @app.route('/', methods=['GET'])
 def index():
@@ -11,6 +13,14 @@ def index():
 @app.route('/admin', methods=['GET'])
 def admin():
     return render_template('admin.html')
+
+@app.route('/doctor', methods=['GET'])
+def doctor():
+    return render_template('doctor.html')
+
+@app.route('/patient', methods=['GET'])
+def patient():
+    return render_template('patient.html')
 
 @app.route('/user_profile', methods=['GET'])
 def user_profile():
@@ -46,14 +56,11 @@ def test():
 
 @app.route("/", methods=['POST'])
 def login():
-    users = database.db.users
-    login_user = users.find_one({'username': request.form['username']})
+    return User().login()
 
-    if login_user:
-        if brcypt.hashpw(request.form['password'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
-            session['username'] = request.form['username']
-            return redirect(url_for('/'))
-    return 'Invalid username or password combination'
+@app.route("/signout")
+def signout():
+    return User().signout()
 
 if __name__ == '__main__':
     app.run(port=8000)

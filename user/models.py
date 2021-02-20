@@ -54,4 +54,6 @@ class User:
     if user and user['password'] == request.form['password']:
         session['username'] = request.form['username']
         return redirect(url_for('admin'))
+    else:
+      return "Error"
     

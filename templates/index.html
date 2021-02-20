@@ -1,78 +1,176 @@
-{% extends "layout.html" %} {% block content %}
-<div class="row d-flex align-items-center">
-  <div class="col-9">
-    <div
-      id="carouselExampleControls"
-      class="carousel slide"
-      data-bs-ride="carousel"
-    >
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="/static/background.jpg" class="d-block w-100" alt="..." />
-        </div>
-        <div class="carousel-item">
-          <img src="/static/background-2.jpg" class="d-block w-100" alt="..." />
-        </div>
-        <div class="carousel-item">
-          <img src="/static/background.jpg" class="d-block w-100" alt="..." />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <title>PTIT-WAV2VEC</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-white">
+      <div class="container-lg">
+        <img src="/static/logo.jpg" class="rounded" />
+        <div class="d-flex flex-row justify-content-end">
+          <a class="btn btn-primary me-2" href="/admin"> Giới thiệu </a>
+          <a class="btn btn-primary" href="/contact"> Liên hệ </a>
         </div>
       </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleControls"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleControls"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+    </nav>
+    <div id="content" class="container-lg mt-5">
+      <div class="row d-flex align-items-center">
+        <div class="col-9">
+          <div
+            id="carouselExampleControls"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  src="/static/background.jpg"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="/static/background-2.jpg"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="/static/background.jpg"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="col-3">
+          <form method="POST">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Tên đăng nhập</label
+              >
+              <input
+                name="username"
+                class="form-control"
+                id="exampleInputEmail1"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label"
+                >Mật khẩu</label
+              >
+              <input
+                name="password"
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+              />
+            </div>
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+              />
+              <label class="form-check-label" for="exampleCheck1"
+                >Ghi nhớ tài khoản</label
+              >
+            </div>
+            <div class="d-flex flex-column">
+              <button type="submit" class="btn btn-primary mb-3">
+                Đăng nhập
+              </button>
+              <div
+                id="signupHelp"
+                class="d-flex form-text mb-3 justify-content-center"
+              >
+                Chưa có tài khoản?
+              </div>
+              <a href="/register" class="btn btn-secondary">Đăng ký</a>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-3">
-    <form method="POST">
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Tên đăng nhập</label>
-        <input
-          name="username"
-          class="form-control"
-          id="exampleInputEmail1"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
-        <input
-          name="password"
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-        />
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1"
-          >Ghi nhớ tài khoản</label
-        >
-      </div>
-      <div class="d-flex flex-column">
-        <button type="submit" class="btn btn-primary mb-3" >Đăng nhập</button>
-        <div
-          id="signupHelp"
-          class="d-flex form-text mb-3 justify-content-center"
-        >
-          Chưa có tài khoản?
+    <div id="footer" class="container-lg mt-4">
+      <div class="row d-flex">
+        <div class="col-8 row d-flex">
+          <h3 class="text-center mb-4" style="color: #ee2121">
+            HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG
+          </h3>
+          <div class="col-6">
+            <p>
+              Trụ sở chính:<br />
+              122 Hoàng Quốc Việt, Q.Cầu Giấy, Hà Nội.
+            </p>
+            <p>
+              Cơ sở đào tạo tại Hà Nội:<br />
+              Km10, Đường Nguyễn Trãi, Q.Hà Đông, Hà Nội
+            </p>
+          </div>
+          <div class="col-6">
+            <p>
+              Học viện cơ sở tại TP. Hồ Chí Minh:<br />
+              11 Nguyễn Đình Chiểu, P. Đa Kao, Q.1 TP Hồ Chí Minh
+            </p>
+            <p>
+              Cơ sở đào tạo tại TP Hồ Chí Minh:<br />
+              Đường Man Thiện, P. Hiệp Phú, Q.9 TP Hồ Chí Minh
+            </p>
+          </div>
         </div>
-        <a href="/register" class="btn btn-secondary">Đăng ký</a>
+        <div class="col-4 d-flex align-items-center">
+          <img src="../static/ptit-logo.png" alt="ptit-logo" />
+        </div>
       </div>
-    </form>
-  </div>
-</div>
-{% endblock %}
+    </div>
+    <div
+      class="container-lg d-flex justify-content-between align-items-center"
+      style="background-color: #f9f0f0"
+    >
+      <div>© 2020 PTIT.AI. All rights reserved.</div>
+      <div>HỆ THỐNG IOT HEALTHCARE - PHIÊN BẢN 2.0</div>
+    </div>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"
+  ></script>
+</html>

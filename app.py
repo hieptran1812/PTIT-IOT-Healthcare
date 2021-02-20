@@ -4,6 +4,7 @@ import bcrypt
 
 app = Flask(__name__)
 app.secret_key = "ptit"
+users = db.users.find({})
 
 @app.route('/', methods=['GET'])
 def index():
@@ -11,11 +12,15 @@ def index():
 
 @app.route('/admin', methods=['GET'])
 def admin():
-    return render_template('admin.html')
+    users = db.users.find({})
+    return render_template('dashboard.html', users = users)
 
 @app.route('/doctor', methods=['GET'])
 def doctor():
-    return render_template('doctor.html')
+    patients = db.users.find({
+        'role': 'patient'
+    })
+    return render_template('doctor.html', patients = patients)
 
 @app.route('/patient', methods=['GET'])
 def patient():
@@ -31,23 +36,28 @@ def register():
 
 @app.route('/nhiptho', methods=['GET'])
 def nhiptho():
-    return render_template('nhiptho.html')
+    users = db.users.find({})
+    return render_template('nhiptho.html', users = users)
 
 @app.route('/tiengho', methods=['GET'])
 def tiengho():
-    return render_template('tiengho.html')
+    users = db.users.find({})
+    return render_template('tiengho.html', users = users)
 
 @app.route('/tiengwheeze', methods=['GET'])
 def tiengwheeze():
-    return render_template('tiengwheeze.html')
+    users = db.users.find({})
+    return render_template('tiengwheeze.html', users = users)
 
 @app.route('/tiengrale', methods=['GET'])
 def tiengrale():
-    return render_template('tiengrale.html')
+    users = db.users.find({})
+    return render_template('tiengrale.html', users = users)
 
 @app.route('/tienggay', methods=['GET'])
 def tienggay():
-    return render_template('tienggay.html')
+    users = db.users.find({})
+    return render_template('tienggay.html', users = users)
 
 @app.route('/nhiptho/hieptran1812', methods=['GET'])
 def test():

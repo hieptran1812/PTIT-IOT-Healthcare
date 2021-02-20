@@ -3,27 +3,32 @@
 
   feather.replace();
 
-  var ctx = document.getElementById("myChart");
+  var admin = 0;
+  var doctor = 0;
+  var patient = 0;
+  var roles = document.getElementsByClassName("role");
+  for (var i = 0; i < roles.length; i++) {
+    if (roles[i].innerText === "admin") admin++;
+    else if (roles[i].innerText === "doctor") doctor++;
+    else patient++;
+  }
 
+  var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
     type: "pie",
     data: {
-      labels: [
-        "admin",
-        "Bác sĩ",
-        "Bệnh nhân"
-      ],
+      labels: ["admin", "doctor", "patient"],
       datasets: [
         {
-          data: [1,4,0],
+          data: [admin, doctor, patient],
           backgroundColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)"
+            "rgb(255, 99, 132)",
+            "rgb(54, 162, 235)",
+            "rgb(35, 193, 120)",
           ],
         },
       ],
     },
-    options: {
-    },
+    options: {},
   });
 })();

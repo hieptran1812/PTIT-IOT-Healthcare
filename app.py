@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import database #database from mongodb
-from user.models import User
+from user.models import User, db
 import bcrypt
 
 app = Flask(__name__)

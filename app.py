@@ -40,9 +40,12 @@ def patient():
 def user_profile():
     return render_template('user_profile.html')
 
-@app.route('/register', methods=['GET'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
+    if request.method == 'GET':
+        return render_template('register.html')
+    else: 
+        return User().register()
 
 @app.route('/nhiptho', methods=['GET'])
 def nhiptho():

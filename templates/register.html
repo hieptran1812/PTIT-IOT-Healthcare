@@ -19,80 +19,92 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container">
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" method="POST">
     <h2>Đăng ký</h2>
-    <div class="form-group">
-      <label for="firstName" class="col-sm-3 control-label">Họ và tên*</label>
-      <div class="col-sm-9">
-        <input type="text" id="firstName" class="form-control" autofocus />
-      </div>
+    <div class="mb-3">
+      <label for="name" class="form-label"><b>Họ và tên</b></label>
+      <input required="required" name="name" class="form-control" id="name" autofocus/>
     </div>
-    <div class="form-group">
-      <label for="email" class="col-sm-3 control-label">Email* </label>
-      <div class="col-sm-9">
-        <input type="email" id="email" class="form-control" name="email" />
-      </div>
+    <div class="mb-3">
+      <label for="username" class="form-label"><b>Tên đăng nhập</b></label>
+      <input
+        required="required"
+        name="username"
+        class="form-control"
+        id="username"
+        autofocus
+      />
     </div>
-    <div class="form-group">
-      <label for="firstName" class="col-sm-3 control-label"
-        >Tên tài khoản*</label
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label"><b>Mật khẩu</b></label>
+      <input
+        required="required"
+        name="password"
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        autofocus
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label"
+        ><b>Nhập lại mật khẩu</b></label
       >
-      <div class="col-sm-9">
-        <input type="text" id="firstName" class="form-control" autofocus />
-      </div>
+      <input
+        required="required"
+        name="confirmPassword"
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        autofocus
+      />
     </div>
-    <div class="form-group">
-      <label for="password" class="col-sm-3 control-label">Mật khẩu*</label>
-      <div class="col-sm-9">
-        <input type="password" id="password" class="form-control" />
-      </div>
+    <div class="mb-3">
+      <p class="form-label"><b>Giới tính</b></p>
+      <input type="radio" id="male" name="gender" value="male" />
+      <label for="male">Nam</label><br />
+      <input type="radio" id="female" name="gender" value="female" />
+      <label for="female">Nữ</label><br />
+      <input type="radio" id="other" name="gender" value="other" />
+      <label for="other">Khác</label>
     </div>
-    <div class="form-group">
-      <label for="password" class="col-sm-3 control-label"
-        >Xác nhận mật khẩu*</label
-      >
-      <div class="col-sm-9">
-        <input type="password" id="password" class="form-control" />
-      </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label"><b>Email</b></label>
+      <input
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        required="required"
+        name="email"
+        class="form-control"
+        id="exampleInputEmail1"
+      />
     </div>
-    <div class="form-group">
-      <label for="birthDate" class="col-sm-3 control-label">Ngày sinh*</label>
-      <div class="col-sm-9">
-        <input type="date" id="birthDate" class="form-control" />
-      </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label"><b>Số điện thoại</b></label>
+      <input name="phone" class="form-control" id="phone" />
     </div>
-    <div class="form-group">
-      <label for="phoneNumber" class="col-sm-3 control-label"
-        >Số điện thoại
-      </label>
-      <div class="col-sm-9">
-        <input type="phoneNumber" id="phoneNumber" class="form-control" />
-      </div>
+    <div class="mb-3">
+      <label for="url" class="form-label"><b>URL</b></label>
+      <input
+        pattern="https?://.+"
+        title="Include http://"
+        name="url"
+        class="form-control"
+        id="url"
+      />
     </div>
-    <div class="form-group">
-      <label for="weight" class="col-sm-3 control-label">Địa chỉ </label>
-      <div class="col-sm-9">
-        <input type="number" class="form-control" />
-      </div>
+    <div class="mb-3">
+      <p class="form-label"><b>Vai trò</b></p>
+      <input type="radio" id="admin" name="role" value="admin" />
+      <label for="admin">Admin</label><br />
+      <input type="radio" id="doctor" name="role" value="doctor" />
+      <label for="doctor">Bác sĩ</label><br />
+      <input type="radio" id="patient" name="role" value="patient" />
+      <label for="patient">Bệnh nhân</label>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3">Giới tính</label>
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-sm-4">
-            <label class="radio-inline">
-              <input type="radio" id="femaleRadio" value="Female" />Nam
-            </label>
-          </div>
-          <div class="col-sm-4">
-            <label class="radio-inline">
-              <input type="radio" id="maleRadio" value="Male" />Nữ
-            </label>
-          </div>
-        </div>
-      </div>
+    <div class="mb-3">
+      <label for="address" class="form-label"><b>Địa chỉ</b></label>
+      <input name="address" class="form-control" id="address" />
     </div>
-    <!-- /.form-group -->
     <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
   </form>
   <!-- /form -->

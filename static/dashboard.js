@@ -22,9 +22,9 @@
         {
           data: [admin, doctor, patient],
           backgroundColor: [
-            "rgb(255, 99, 132)",
-            "rgb(54, 162, 235)",
             "rgb(35, 193, 120)",
+            "rgb(54, 162, 235)",
+            "rgb(255, 99, 132)"
           ],
         },
       ],

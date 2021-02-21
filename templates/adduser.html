@@ -81,7 +81,7 @@
 <form method="POST">
   <div class="mb-3">
     <label for="name" class="form-label"><b>Họ và tên</b></label>
-    <input required="required" name="name" class="form-control" id="name" />
+    <input required="required" name="name" class="form-control" id="name" autofocus/>
   </div>
   <div class="mb-3">
     <label for="username" class="form-label"><b>Tên đăng nhập</b></label>
@@ -90,6 +90,7 @@
       name="username"
       class="form-control"
       id="username"
+      autofocus
     />
   </div>
   <div class="mb-3">
@@ -100,6 +101,7 @@
       type="password"
       class="form-control"
       id="exampleInputPassword1"
+      autofocus
     />
   </div>
   <div class="mb-3">
@@ -112,7 +114,17 @@
       type="password"
       class="form-control"
       id="exampleInputPassword1"
+      autofocus
     />
+  </div>
+  <div class="mb-3">
+    <p class="form-label"><b>Giới tính</b></p>
+    <input type="radio" id="male" name="gender" value="male" />
+    <label for="male">Nam</label><br />
+    <input type="radio" id="female" name="gender" value="female" />
+    <label for="female">Nữ</label><br />
+    <input type="radio" id="other" name="gender" value="other" />
+    <label for="other">Khác</label>
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label"><b>Email</b></label>

@@ -61,6 +61,21 @@ class User:
                 return redirect(url_for('patient'))
         else:
             return "Error"
+    
+    def register(self):
+        user = {
+            'name': request.form['name'],
+            'username': request.form['username'],
+            'password': request.form['password'],
+            'email': request.form['email'],
+            'url': request.form['url'],
+            'address': request.form['address'],
+            'role': request.form['role'],
+            'gender': request.form['gender'],
+            'phone': request.form['phone']
+        }
+        insertUser = db.users.insert_one(user)
+        return redirect('/')
 
     ## CRUD User
 
@@ -72,7 +87,9 @@ class User:
             'email': request.form['email'],
             'url': request.form['url'],
             'address': request.form['address'],
-            'role': request.form['role']
+            'role': request.form['role'],
+            'gender': request.form['gender'],
+            'phone': request.form['phone']
         }
         insertUser = db.users.insert_one(user)
         return redirect('admin')

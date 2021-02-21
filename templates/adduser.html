@@ -1,0 +1,159 @@
+{% extends "dashboard.html" %} {% block nav %}
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="/admin">
+      <span data-feather="home"></span>
+      Dashboard
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/user_profile">
+      <span data-feather="users"></span>
+      Xem profile
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/adduser">
+      <span data-feather="user-plus"></span>
+      Thêm người dùng
+    </a>
+  </li>
+</ul>
+<h6
+  class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+>
+  <span>Giám sát</span>
+  <a class="link-secondary" href="#" aria-label="Add a new report">
+    <span data-feather="plus-circle"></span>
+  </a>
+</h6>
+<ul class="nav flex-column mb-2">
+  <li class="nav-item">
+    <a class="nav-link " href="#">
+      <span data-feather="activity"></span>
+      Nhịp thở
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tiengho">
+      <span data-feather="activity"></span>
+      Tiếng ho
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tiengwheeze">
+      <span data-feather="activity"></span>
+      Tiếng wheeze
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tiengrale">
+      <span data-feather="activity"></span>
+      Tiếng rale
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tienggay">
+      <span data-feather="activity"></span>
+      Tiếng gáy
+    </a>
+  </li>
+</ul>
+
+<h6
+  class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+>
+  <span>Saved reports</span>
+  <a class="link-secondary" href="#" aria-label="Add a new report">
+    <span data-feather="plus-circle"></span>
+  </a>
+</h6>
+<ul class="nav flex-column mb-2">
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <span data-feather="bar-chart-2"></span>
+      Reports
+    </a>
+  </li>
+</ul>
+{% endblock %} {% block dashboard %} {% endblock %} {% block table %}
+<h2 class="border-bottom pb-3 mt-3">Thêm người dùng</h2>
+<form method="POST">
+  <div class="mb-3">
+    <label for="name" class="form-label"><b>Họ và tên</b></label>
+    <input required="required" name="name" class="form-control" id="name" />
+  </div>
+  <div class="mb-3">
+    <label for="username" class="form-label"><b>Tên đăng nhập</b></label>
+    <input
+      required="required"
+      name="username"
+      class="form-control"
+      id="username"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label"><b>Mật khẩu</b></label>
+    <input
+      required="required"
+      name="password"
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label"
+      ><b>Nhập lại mật khẩu</b></label
+    >
+    <input
+      required="required"
+      name="confirmPassword"
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label"><b>Email</b></label>
+    <input
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      required="required"
+      name="email"
+      class="form-control"
+      id="exampleInputEmail1"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="phone" class="form-label"><b>Số điện thoại</b></label>
+    <input name="phone" class="form-control" id="phone" />
+  </div>
+  <div class="mb-3">
+    <label for="url" class="form-label"><b>URL</b></label>
+    <input
+      pattern="https?://.+"
+      title="Include http://"
+      name="url"
+      class="form-control"
+      id="url"
+    />
+  </div>
+  <div class="mb-3">
+    <p class="form-label"><b>Vai trò</b></p>
+    <input type="radio" id="admin" name="role" value="admin" />
+    <label for="admin">Admin</label><br />
+    <input type="radio" id="doctor" name="role" value="doctor" />
+    <label for="doctor">Bác sĩ</label><br />
+    <input type="radio" id="patient" name="role" value="patient" />
+    <label for="patient">Bệnh nhân</label>
+  </div>
+  <div class="mb-3">
+    <label for="address" class="form-label"><b>Địa chỉ</b></label>
+    <input name="address" class="form-control" id="address" />
+  </div>
+  <div class="d-flex flex-column">
+    <button type="submit" class="btn btn-primary mb-3">Thêm người dùng</button>
+  </div>
+</form>
+
+{% endblock %}

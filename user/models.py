@@ -12,11 +12,12 @@ db = client.get_database(database_name)
 
 class User:
     
-  def start_session(self, user):
-    del user['password']
-    session['logged_in'] = True
-    session['user'] = user
-    return jsonify(user), 200
+    ## login  
+    def start_session(self, user):
+        del user['password']
+        session['logged_in'] = True
+        session['user'] = user
+        return jsonify(user), 200
 
 #   def signup(self):
 #     print(request.form)
@@ -41,19 +42,42 @@ class User:
 
 #     return jsonify({ "error": "Signup failed" }), 400
   
-  def signout(self):
-    session.pop('username', None)
-    return redirect('/')
+    def signout(self):
+        session.pop('username', None)
+        return redirect('/')
   
-  def login(self):
-
-    user = db.users.find_one({'username': request.form['username']})
+    def login(self):
+        user = db.users.find_one({'username': request.form['username']})
     
-    # if user and pbkdf2_sha256.verify(request.form['password'], user['password']):
-    #   return self.start_session(user)
-    if user and user['password'] == request.form['password']:
-        session['username'] = request.form['username']
-        return redirect(url_for('admin'))
-    else:
-      return "Error"
+        # if user and pbkdf2_sha256.verify(request.form['password'], user['password']):
+        #   return self.start_session(user)
+        if user and user['password'] == request.form['password']:
+            session['username'] = request.form['username']
+            if user['role'] == 'admin':
+                return redirect(url_for('admin'))
+            elif user['role'] == 'doctor':
+                return redirect(url_for('doctor'))
+            else:
+                return redirect(url_for('patient'))
+        else:
+            return "Error"
+
+    ## CRUD User
+
+    def addUser(self):
+        user = {
+            'name': request.form['name'],
+            'username': request.form['username'],
+            'password': request.form['password'],
+            'email': request.form['email'],
+            'url': request.form['url'],
+            'address': request.form['address'],
+            'role': request.form['role']
+        }
+        insertUser = db.users.insert_one(user)
+        return redirect('admin')
+
+    def deleteUser():
+        pass
+
     

@@ -6,14 +6,24 @@ app = Flask(__name__)
 app.secret_key = "ptit"
 users = db.users.find({})
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        return User().login()
+    else:
+        return render_template('index.html')
 
 @app.route('/admin', methods=['GET'])
 def admin():
     users = db.users.find({})
     return render_template('dashboard.html', users = users)
+
+@app.route('/adduser', methods=['POST', 'GET'])
+def adduser():
+    if request.method == 'GET':
+        return render_template('adduser.html')
+    else: 
+        return User().addUser()
 
 @app.route('/doctor', methods=['GET'])
 def doctor():
@@ -59,13 +69,9 @@ def tienggay():
     users = db.users.find({})
     return render_template('tienggay.html', users = users)
 
-@app.route('/nhiptho/hieptran1812', methods=['GET'])
+@app.route('/nhiptho/hiep', methods=['GET'])
 def test():
     return render_template('hieptran1812.html')
-
-@app.route("/", methods=['POST'])
-def login():
-    return User().login()
 
 @app.route("/signout")
 def signout():

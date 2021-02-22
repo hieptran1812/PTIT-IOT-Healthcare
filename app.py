@@ -4,7 +4,6 @@ import bcrypt
 
 app = Flask(__name__)
 app.secret_key = "ptit"
-users = db.users.find({})
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -36,9 +35,11 @@ def doctor():
 def patient():
     return render_template('patient.html')
 
+######## hard-code #############
 @app.route('/user_profile', methods=['GET'])
 def user_profile():
     return render_template('user_profile.html')
+######## hard-code #############
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -47,34 +48,39 @@ def register():
     else: 
         return User().register()
 
-@app.route('/nhiptho', methods=['GET'])
-def nhiptho():
-    users = db.users.find({})
-    return render_template('nhiptho.html', users = users)
+@app.route('/<tenloaigiamsat>', methods=['GET'])
+def giamsat(tenloaigiamsat):
+    users = db.users.find({
+        'role': 'patient'
+    })
+    loaigiamsat = {
+        'nhiptho': 'Nhịp thở',
+        'tiengho': 'Tiếng ho',
+        'tiengwheeze': 'Tiếng wheeze',
+        'tiengrale': 'Tiếng rale',
+        'tienggay': 'Tiếng gáy',
+    }
+    tengiamsat = None
+    if tenloaigiamsat in loaigiamsat:
+        tengiamsat = tenloaigiamsat
+    return render_template('giamsat.html', giamsat = loaigiamsat, users = users, tenloaigiamsat = tenloaigiamsat)
 
-@app.route('/tiengho', methods=['GET'])
-def tiengho():
-    users = db.users.find({})
-    return render_template('tiengho.html', users = users)
-
-@app.route('/tiengwheeze', methods=['GET'])
-def tiengwheeze():
-    users = db.users.find({})
-    return render_template('tiengwheeze.html', users = users)
-
-@app.route('/tiengrale', methods=['GET'])
-def tiengrale():
-    users = db.users.find({})
-    return render_template('tiengrale.html', users = users)
-
-@app.route('/tienggay', methods=['GET'])
-def tienggay():
-    users = db.users.find({})
-    return render_template('tienggay.html', users = users)
-
-@app.route('/nhiptho/hiep', methods=['GET'])
-def test():
-    return render_template('hieptran1812.html')
+@app.route('/<tenloaigiamsat>/<username>', methods=['GET'])
+def test(tenloaigiamsat, username):
+    users = db.users.find({
+        'role': 'patient'
+    })
+    loaigiamsat = {
+        'nhiptho': 'Nhịp thở',
+        'tiengho': 'Tiếng ho',
+        'tiengwheeze': 'Tiếng wheeze',
+        'tiengrale': 'Tiếng rale',
+        'tienggay': 'Tiếng gáy',
+    }
+    tengiamsat = None
+    if tenloaigiamsat in loaigiamsat:
+        tengiamsat = tenloaigiamsat
+    return render_template('urlbenhnhan.html', tenloaigiamsat = tenloaigiamsat, username = username, giamsat = loaigiamsat)
 
 @app.route("/signout")
 def signout():

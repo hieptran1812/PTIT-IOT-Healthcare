@@ -60,7 +60,7 @@ class User:
             else:
                 return redirect(url_for('patient'))
         else:
-            return "Error"
+            return "Không tồn tại tài khoản này"
     
     def register(self):
         user = {

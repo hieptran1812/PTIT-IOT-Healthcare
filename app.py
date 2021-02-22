@@ -80,7 +80,7 @@ def test(tenloaigiamsat, username):
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat
-    return render_template('urlbenhnhan.html', tenloaigiamsat = tenloaigiamsat, username = username, giamsat = loaigiamsat)
+    return render_template('urlbenhnhan.html', tenloaigiamsat = tenloaigiamsat, username = username, giamsat = loaigiamsat, users = users)
 
 @app.route("/signout")
 def signout():

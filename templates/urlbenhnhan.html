@@ -55,11 +55,13 @@
   </li>
 </ul>
 {% endblock %} {% block dashboard %} {% endblock %} {% block table %}
+
+<!-- Truyền link url vào dưới -->
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <iframe
       width="1519"
       height="591"
-      src="https://www.youtube.com/embed/Sv6dMFF_yts"
+      src={{ url.replace('watch?v=', 'embed/') }}
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
@@ -93,9 +95,7 @@
             role="group"
             aria-label="Basic mixed styles example"
           >
-            <a type="button" class="btn btn-success btn-sm" href="/user_profile/{{user['username']}}""
-              >Thông tin</a
-            >
+            <a type="button" class="btn btn-success btn-sm" href="/user_profile/{{user['username']}}"">Thông tin</a>
             <button type="button" class="btn btn-warning btn-sm">Sửa</button>
             <button type="button" class="btn btn-danger btn-sm">Xóa</button>
           </div>

@@ -67,12 +67,16 @@ class User:
             'name': request.form['name'],
             'username': request.form['username'],
             'password': request.form['password'],
-            'email': request.form['email'],
-            'url': request.form['url'],
-            'address': request.form['address'],
-            'role': request.form['role'],
-            'gender': request.form['gender'],
-            'phone': request.form['phone']
+            'email': request.form.get('email'),
+            'urlnhiptho': request.form.get('urlnhiptho'),
+            'urltiengho': request.form.get('urltiengho'),
+            'urltiengwheeze': request.form.get('urltiengwheeze'),
+            'urltiengrale': request.form.get('urltiengrale'),
+            'urltienggay': request.form.get('urltienggay'),
+            'address': request.form.get('address'),
+            'role': request.form.get('role'),
+            'gender': request.form.get('gender'),
+            'phone': request.form.get('phone')
         }
         insertUser = db.users.insert_one(user)
         return redirect('/')
@@ -84,17 +88,22 @@ class User:
             'name': request.form['name'],
             'username': request.form['username'],
             'password': request.form['password'],
-            'email': request.form['email'],
-            'url': request.form['url'],
-            'address': request.form['address'],
-            'role': request.form['role'],
-            'gender': request.form['gender'],
-            'phone': request.form['phone']
+            'email': request.form.get('email'),
+            'urlnhiptho': request.form.get('urlnhiptho'),
+            'urltiengho': request.form.get('urltiengho'),
+            'urltiengwheeze': request.form.get('urltiengwheeze'),
+            'urltiengrale': request.form.get('urltiengrale'),
+            'urltienggay': request.form.get('urltienggay'),
+            'address': request.form.get('address'),
+            'role': request.form.get('role'),
+            'gender': request.form.get('gender'),
+            'phone': request.form.get('phone')
         }
         insertUser = db.users.insert_one(user)
         return redirect('admin')
 
-    def deleteUser():
-        pass
+    def deleteUser(self, username):
+        db.users.delete_one({'username': username})
+        return redirect(url_for('admin'))
 
     

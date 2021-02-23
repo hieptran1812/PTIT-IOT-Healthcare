@@ -41,6 +41,43 @@ def user_profile():
     return render_template('user_profile.html')
 ######## hard-code #############
 
+
+
+@app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân
+def urlPartient(tenloaigiamsat, username):
+    user_url = db.users.find_one({
+        'username': username
+    })
+    url = None
+    if str(tenloaigiamsat) == 'nhiptho':
+        url = str(user_url['urlnhiptho'])
+    if str(tenloaigiamsat) == 'tiengho':
+        url = str(user_url['urltiengho'])
+    if str(tenloaigiamsat) == 'tiengwheeze':
+        url = str(user_url['urltiengwheeze'])
+    if str(tenloaigiamsat) == 'tiengrale':
+        url = str(user_url['urltiengrale'])
+    if str(tenloaigiamsat) == 'tienggay':
+        url = str(user_url['urltienggay'])
+    users_patient = db.users.find({
+        'role': 'patient'
+    })
+    loaigiamsat = {
+        'nhiptho': 'Nhịp thở',
+        'tiengho': 'Tiếng ho',
+        'tiengwheeze': 'Tiếng wheeze',
+        'tiengrale': 'Tiếng rale',
+        'tienggay': 'Tiếng gáy',
+    }
+    tengiamsat = None
+    if tenloaigiamsat in loaigiamsat:
+        tengiamsat = tenloaigiamsat
+    return render_template('urlbenhnhan.html', tenloaigiamsat = tenloaigiamsat, username = username, giamsat = loaigiamsat, users = users_patient, url = url)
+
+@app.route('/delete/<username>', methods=['GET'])
+def delete_user(username):
+    return User().deleteUser(username)
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
@@ -64,23 +101,6 @@ def giamsat(tenloaigiamsat):
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat
     return render_template('giamsat.html', giamsat = loaigiamsat, users = users, tenloaigiamsat = tenloaigiamsat)
-
-@app.route('/<tenloaigiamsat>/<username>', methods=['GET'])
-def test(tenloaigiamsat, username):
-    users = db.users.find({
-        'role': 'patient'
-    })
-    loaigiamsat = {
-        'nhiptho': 'Nhịp thở',
-        'tiengho': 'Tiếng ho',
-        'tiengwheeze': 'Tiếng wheeze',
-        'tiengrale': 'Tiếng rale',
-        'tienggay': 'Tiếng gáy',
-    }
-    tengiamsat = None
-    if tenloaigiamsat in loaigiamsat:
-        tengiamsat = tenloaigiamsat
-    return render_template('urlbenhnhan.html', tenloaigiamsat = tenloaigiamsat, username = username, giamsat = loaigiamsat, users = users)
 
 @app.route("/signout")
 def signout():

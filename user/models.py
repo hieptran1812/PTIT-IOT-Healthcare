@@ -110,15 +110,14 @@ class User:
         db.users.update_one(
             {"username": username}, 
             {"$set": {
-            'urlnhiptho': request.form.get('urlnhiptho'),
-            'urltiengho': request.form.get('urltiengho'),
-            'urltiengwheeze': request.form.get('urltiengwheeze'),
-            'urltiengrale': request.form.get('urltiengrale'),
-            'urltienggay': request.form.get('urltienggay'),
-            'address': request.form.get('address'),
-            'phone': request.form.get('phone')
-        }}
+                'urlnhiptho': request.form.get('urlnhiptho'),
+                'urltiengho': request.form.get('urltiengho'),
+                'urltiengwheeze': request.form.get('urltiengwheeze'),
+                'urltiengrale': request.form.get('urltiengrale'),
+                'urltienggay': request.form.get('urltienggay'),
+                'address': request.form.get('address'),
+                'phone': request.form.get('phone')}
+            }
         )
-        print(request.form.get('urlnhiptho'))
         return redirect(url_for('admin'))
     

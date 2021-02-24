@@ -35,13 +35,15 @@ def doctor():
 def patient():
     return render_template('patient.html')
 
-######## hard-code #############
-@app.route('/user_profile', methods=['GET'])
-def user_profile():
-    return render_template('user_profile.html')
-######## hard-code #############
-
-
+@app.route('/user_profile/<username>', methods=['GET', 'POST']) # xem profile và update user profile
+def user_profile(username):
+    user = db.users.find_one({
+        'username': username
+    })
+    if request.method == 'GET':
+        return render_template('user_profile.html', user=user)
+    if request.method == 'POST':
+        return User().updateUser(username)
 
 @app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân
 def urlPartient(tenloaigiamsat, username):

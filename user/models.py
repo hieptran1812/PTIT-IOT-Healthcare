@@ -53,9 +53,9 @@ class User:
         #   return self.start_session(user)
         if user and user['password'] == request.form['password']:
             session['username'] = request.form['username']
-            if user['role'] == 'admin':
+            if user['role'] == 'Admin':
                 return redirect(url_for('admin'))
-            elif user['role'] == 'doctor':
+            elif user['role'] == 'Bác sĩ':
                 return redirect(url_for('doctor'))
             else:
                 return redirect(url_for('patient'))

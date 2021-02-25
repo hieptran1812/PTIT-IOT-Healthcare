@@ -27,7 +27,7 @@ def adduser():
 @app.route('/doctor', methods=['GET'])
 def doctor():
     patients = db.users.find({
-        'role': 'patient'
+        'role': 'Bệnh nhân'
     })
     return render_template('doctor.html', patients = patients)
 
@@ -62,7 +62,7 @@ def urlPartient(tenloaigiamsat, username):
     if str(tenloaigiamsat) == 'tienggay':
         url = str(user_url['urltienggay'])
     users_patient = db.users.find({
-        'role': 'patient'
+        'role': 'Bệnh nhân'
     })
     loaigiamsat = {
         'nhiptho': 'Nhịp thở',
@@ -90,7 +90,7 @@ def register():
 @app.route('/<tenloaigiamsat>', methods=['GET'])
 def giamsat(tenloaigiamsat):
     users = db.users.find({
-        'role': 'patient'
+        'role': 'Bệnh nhân'
     })
     loaigiamsat = {
         'nhiptho': 'Nhịp thở',

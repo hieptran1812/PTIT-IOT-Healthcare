@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 from passlib.hash import pbkdf2_sha256
 from flask_pymongo import pymongo
 
@@ -60,7 +60,8 @@ class User:
             else:
                 return redirect(url_for('patient'))
         else:
-            return "Không tồn tại tài khoản này"
+            error = "Không tồn tại tài khoản này"
+            return render_template('index.html', error = error)
     
     def register(self):
         user = {
@@ -79,7 +80,8 @@ class User:
             'phone': request.form.get('phone')
         }
         insertUser = db.users.insert_one(user)
-        return redirect('/')
+        flash("Đăng kí thành công!")
+        return redirect("/")
 
     ## CRUD User
 

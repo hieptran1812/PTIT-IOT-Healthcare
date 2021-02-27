@@ -83,6 +83,14 @@
           </div>
         </div>
         <div class="col-3">
+          {% with messages = get_flashed_messages() %} {% if messages %}
+          <div class="alert alert-primary">
+            {% for message in messages %} {{ message }} {% endfor %}
+          </div>
+          {% endif %} {% endwith %} {% if error %}
+          <div class="alert alert-danger">{{ error }}</div>
+          {% endif %}
+
           <form method="POST">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label"

@@ -39,8 +39,8 @@ def patient():
     if request.method == 'GET':
         return render_template('patient.html', user=user)
 
-@app.route('/user_profile/<username>', methods=['GET', 'POST']) # xem profile và update user profile
-def user_profile(username):
+@app.route('/user_profile/<username>', methods=['GET', 'POST']) # xem profile bệnh nhân và update user profile
+def user_update_profile(username):
     user = db.users.find_one({
         'username': username
     })

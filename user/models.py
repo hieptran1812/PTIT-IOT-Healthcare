@@ -48,7 +48,7 @@ class User:
   
     def login(self):
         user = db.users.find_one({'username': request.form['username']})
-    
+       
         # if user and pbkdf2_sha256.verify(request.form['password'], user['password']):
         #   return self.start_session(user)
         if user and user['password'] == request.form['password']:
@@ -79,12 +79,18 @@ class User:
             'gender': request.form.get('gender'),
             'phone': request.form.get('phone')
         }
-        insertUser = db.users.insert_one(user)
-        flash("Đăng kí thành công!")
-        return redirect("/")
+        userInDb = db.users.find_one({ # Tìm user trong database
+            'username': user['username']
+        })
+        if userInDb:
+            flash("Tên người dùng đã tồn tại!")
+            return render_template('register.html')
+        else:
+            insertUser = db.users.insert_one(user)
+            flash("Đăng kí thành công!")
+            return redirect("/")
 
     ## CRUD User
-
     def addUser(self):
         user = {
             'name': request.form['name'],
@@ -101,8 +107,16 @@ class User:
             'gender': request.form.get('gender'),
             'phone': request.form.get('phone')
         }
-        insertUser = db.users.insert_one(user)
-        return redirect('admin')
+        userInDb = db.users.find_one({ # Tìm user trong database
+            'username': user['username']
+        })
+        if userInDb:
+            error = "Tên đăng nhập đã tồn tại!"
+            return render_template('adduser.html', error = error)
+        else:
+            insertUser = db.users.insert_one(user)
+            flash('Thêm người dùng thành công!')
+            return redirect('adduser')
 
     def deleteUser(self, username):
         db.users.delete_one({'username': username})

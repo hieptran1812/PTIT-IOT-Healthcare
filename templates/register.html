@@ -21,6 +21,11 @@
 <div class="container">
   <form class="form-horizontal" role="form" method="POST">
     <h2>Đăng ký</h2>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="alert alert-danger">
+    {% for message in messages %} {{ message }} {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
     <div class="mb-3">
       <label for="name" class="form-label"><b>Họ và tên</b></label>
       <input required="required" name="name" class="form-control" id="name" autofocus/>

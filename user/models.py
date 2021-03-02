@@ -60,7 +60,7 @@ class User:
             else:
                 return redirect(url_for('patient'))
         else:
-            error = "Không tồn tại tài khoản này"
+            error = "Tên đăng nhập hoặc mật khẩu sai!"
             return render_template('index.html', error = error)
     
     def register(self):
@@ -135,5 +135,6 @@ class User:
                 'phone': request.form.get('phone')}
             }
         )
-        return redirect(url_for('admin'))
+        flash('Cập nhật thành công!')
+        return redirect('/user_profile/' + username)
     

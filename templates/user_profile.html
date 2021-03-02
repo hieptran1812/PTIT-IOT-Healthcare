@@ -231,6 +231,13 @@
                   />
                 </div>
               </div>
+              <div class="row pb-3 d-flex align-items-center pt-3 justify-content-center">
+                {% with messages = get_flashed_messages() %} {% if messages %}
+                <div class="alert alert-primary" style="text-align: center; width: 50%; height: 70%" >
+                  {% for message in messages %} {{ message }} {% endfor %}
+                </div>
+                {% endif %} {% endwith %}
+              </div>
               <div style="text-align: center">
                 <button type="submit" class="btn btn-primary btn-block">
                   Cập nhật

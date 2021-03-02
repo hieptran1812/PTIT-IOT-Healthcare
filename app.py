@@ -1,9 +1,31 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from user.models import User, db
 import bcrypt
 
 app = Flask(__name__)
 app.secret_key = "ptit"
+
+limit_for_authentication = [
+  'admin',
+  'adduser',
+  'doctor',
+  'patient',
+  'user_profile',
+  'giamsat',
+]
+
+not_need_authentication = [
+    'index',
+    'static'
+]
+
+@app.before_request
+def before_request():
+  session.permanent = True
+#   app.permanent_session_lifetime = timedelta(minutes=10)
+  print(request.endpoint)
+  if 'logged_in' not in session and request.endpoint not in not_need_authentication:
+    return redirect("/")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -106,7 +128,9 @@ def giamsat(tenloaigiamsat):
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat
-    return render_template('giamsat.html', giamsat = loaigiamsat, users = users, tenloaigiamsat = tenloaigiamsat)
+        return render_template('giamsat.html', giamsat = loaigiamsat, users = users, tenloaigiamsat = tenloaigiamsat)
+    else: 
+        return render_template('patient.html')
 
 @app.route("/signout")
 def signout():

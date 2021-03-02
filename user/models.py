@@ -43,7 +43,7 @@ class User:
 #     return jsonify({ "error": "Signup failed" }), 400
   
     def signout(self):
-        session.pop('username', None)
+        session.pop('logged_in', None)
         return redirect('/')
   
     def login(self):
@@ -52,6 +52,7 @@ class User:
         # if user and pbkdf2_sha256.verify(request.form['password'], user['password']):
         #   return self.start_session(user)
         if user and user['password'] == request.form['password']:
+            session['logged_in'] = True
             session['username'] = request.form['username']
             if user['role'] == 'Admin':
                 return redirect(url_for('admin'))

@@ -88,7 +88,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/user_profile">
+                <a class="nav-link" href="/user_profile/{{name}}">
                   <span data-feather="users"></span>
                   Xem profile
                 </a>
@@ -110,42 +110,37 @@
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link" href="/nhiptho">
+                <a class="nav-link" href="/giamsat/nhiptho">
                   <span data-feather="activity"></span>
                   Nhịp thở
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/tiengho">
+                <a class="nav-link" href="/giamsat/tiengho">
                   <span data-feather="activity"></span>
                   Tiếng ho
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/tiengwheeze">
+                <a class="nav-link" href="/giamsat/tiengwheeze">
                   <span data-feather="activity"></span>
                   Tiếng wheeze
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/tiengrale">
+                <a class="nav-link" href="/giamsat/tiengrale">
                   <span data-feather="activity"></span>
                   Tiếng rale
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/tienggay">
+                <a class="nav-link" href="/giamsat/tienggay">
                   <span data-feather="activity"></span>
                   Tiếng gáy
                 </a>
               </li>
             </ul>
             {% endblock %}
-          </div>
-          <div class="position-relative ms-3" style="height: 55%">
-            <p class="position-absolute bottom-0">
-              © 2020 PTIT.AI. All rights reserved.
-            </p>
           </div>
         </nav>
 
@@ -202,7 +197,11 @@
                         href="/user_profile/{{user['username']}}"
                         >Thông tin</a
                       >
-                      <a type="button" class="btn btn-danger btn-sm" href="/delete/{{user['username']}}">
+                      <a
+                        type="button"
+                        class="btn btn-danger btn-sm"
+                        href="/delete/{{user['username']}}"
+                      >
                         Xóa
                       </a>
                     </div>

@@ -5,14 +5,14 @@ import bcrypt
 app = Flask(__name__)
 app.secret_key = "ptit"
 
-limit_for_authentication = [
-  'admin',
-  'adduser',
-  'doctor',
-  'patient',
-  'user_profile',
-  'giamsat',
-]
+# limit_for_authentication = [
+#   'admin',
+#   'adduser',
+#   'doctor',
+#   'patient',
+#   'user_profile',
+#   'giamsat',
+# ]
 
 not_need_authentication = [
     'index',
@@ -22,7 +22,7 @@ not_need_authentication = [
 @app.before_request
 def before_request():
   session.permanent = True
-#   app.permanent_session_lifetime = timedelta(minutes=10)
+# app.permanent_session_lifetime = timedelta(minutes=10)
   print(request.endpoint)
   if 'logged_in' not in session and request.endpoint not in not_need_authentication:
     return redirect("/")
@@ -53,21 +53,22 @@ def doctor():
     })
     return render_template('doctor.html', patients = patients)
 
-@app.route('/patient/<username>', methods=['GET', 'POST'])
+@app.route('/patient', methods=['GET'])
 def patient():
+    username = session['username']
     user = db.users.find_one({
         'username': username
     })
-    if request.method == 'GET':
-        return render_template('patient.html', user=user)
+    return render_template('patient.html', user = user)
 
 @app.route('/user_profile/<username>', methods=['GET', 'POST']) # xem profile bệnh nhân và update user profile
-def user_update_profile(username):
+def user_profile(username):
     user = db.users.find_one({
         'username': username
     })
+    name = session['username']
     if request.method == 'GET':
-        return render_template('user_profile.html', user=user)
+        return render_template('user_profile.html', user=user, name=)
     if request.method == 'POST':
         return User().updateUser(username)
 
@@ -113,7 +114,7 @@ def register():
     else: 
         return User().register()
 
-@app.route('/<tenloaigiamsat>', methods=['GET'])
+@app.route('/giamsat/<tenloaigiamsat>', methods=['GET'])
 def giamsat(tenloaigiamsat):
     users = db.users.find({
         'role': 'Bệnh nhân'
@@ -129,8 +130,6 @@ def giamsat(tenloaigiamsat):
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat
         return render_template('giamsat.html', giamsat = loaigiamsat, users = users, tenloaigiamsat = tenloaigiamsat)
-    else: 
-        return render_template('patient.html')
 
 @app.route("/signout")
 def signout():

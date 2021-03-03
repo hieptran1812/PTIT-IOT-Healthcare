@@ -31,12 +31,12 @@
   {% for key, value in giamsat.items() %}
   <li class="nav-item">
     {% if key == tenloaigiamsat %}
-    <a class="nav-link active" href="/{{key}}">
+    <a class="nav-link active" href="/giamsat/{{key}}">
       <span data-feather="activity"></span>
       {{value}}
     </a>
     {% else %}
-    <a class="nav-link" href="/{{key}}">
+    <a class="nav-link" href="/giamsat/{{key}}">
       <span data-feather="activity"></span>
       {{value}}
     </a>

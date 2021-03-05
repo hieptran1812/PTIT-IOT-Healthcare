@@ -54,12 +54,7 @@ class User:
         if user and user['password'] == request.form['password']:
             session['logged_in'] = True
             session['username'] = request.form['username']
-            if user['role'] == 'Admin':
-                return redirect(url_for('admin'))
-            elif user['role'] == 'Bác sĩ':
-                return redirect(url_for('doctor'))
-            else:
-                return redirect(url_for('patient'))
+            return redirect('/dashboard')
         else:
             error = "Tên đăng nhập hoặc mật khẩu sai!"
             return render_template('index.html', error = error)

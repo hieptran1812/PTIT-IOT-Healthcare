@@ -34,11 +34,6 @@ def index():
     else:
         return render_template('index.html')
 
-@app.route('/admin', methods=['GET'])
-def admin():
-    users = db.users.find({})
-    return render_template('dashboard.html', users = users)
-
 @app.route('/adduser', methods=['POST', 'GET'])
 def adduser():
     if request.method == 'GET':
@@ -46,20 +41,45 @@ def adduser():
     else: 
         return User().addUser()
 
-@app.route('/doctor', methods=['GET'])
-def doctor():
-    patients = db.users.find({
-        'role': 'Bệnh nhân'
-    })
-    return render_template('doctor.html', patients = patients)
+# @app.route('/doctor', methods=['GET'])
+# def doctor():
+#     patients = db.users.find({
+#         'role': 'Bệnh nhân'
+#     })
+#     return render_template('doctor.html', patients = patients)
 
-@app.route('/patient', methods=['GET'])
-def patient():
+# @app.route('/patient', methods=['GET'])
+# def patient():
+#     username = session['username']
+#     user = db.users.find_one({
+#         'username': username
+#     })
+#     return render_template('patient.html', user = user)
+
+# @app.route('/admin', methods=['GET'])
+# def admin():
+#     users = db.users.find({})
+#     return render_template('dashboard.html', users = users)
+
+@app.route('/dashboard', methods=['GET'])
+def dashboard():
     username = session['username']
-    user = db.users.find_one({
+    userInfo = db.users.find_one({
         'username': username
     })
-    return render_template('patient.html', user = user)
+    if userInfo['role'] == 'Admin':
+        users = db.users.find({})
+        return render_template('dashboard.html', users = users)
+    elif userInfo['role'] == 'Bác sĩ':
+        patients = db.users.find({
+            'role': 'Bệnh nhân'
+        })
+        return render_template('doctor.html', patients = patients)
+    else:
+        user = db.users.find_one({
+            'username': username
+        })
+        return render_template('patient.html', user = user)
 
 @app.route('/user_profile/<username>', methods=['GET', 'POST']) # xem profile bệnh nhân và update user profile
 def user_profile(username):
@@ -67,8 +87,9 @@ def user_profile(username):
         'username': username
     })
     name = session['username']
+    print(name)
     if request.method == 'GET':
-        return render_template('user_profile.html', user=user, name=)
+        return render_template('user_profile.html', user=user, name=name)
     if request.method == 'POST':
         return User().updateUser(username)
 

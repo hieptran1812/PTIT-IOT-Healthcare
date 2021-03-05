@@ -3,7 +3,7 @@
 {% endblock %} {% block nav %}
 <ul class="nav flex-column">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="/admin">
+    <a class="nav-link active" aria-current="page" href="/dashboard">
       <span data-feather="home"></span>
       Dashboard
     </a>
@@ -25,53 +25,37 @@
 </h6>
 <ul class="nav flex-column mb-2">
   <li class="nav-item">
-    <a class="nav-link" href="/nhiptho">
+    <a class="nav-link" href="/giamsat/nhiptho">
       <span data-feather="activity"></span>
       Nhịp thở
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/tiengho">
+    <a class="nav-link" href="/giamsat/tiengho">
       <span data-feather="activity"></span>
       Tiếng ho
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/tiengwheeze">
+    <a class="nav-link" href="/giamsat/tiengwheeze">
       <span data-feather="activity"></span>
       Tiếng wheeze
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/tiengrale">
+    <a class="nav-link" href="/giamsat/tiengrale">
       <span data-feather="activity"></span>
       Tiếng rale
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/tienggay">
+    <a class="nav-link" href="/giamsat/tienggay">
       <span data-feather="activity"></span>
       Tiếng gáy
     </a>
   </li>
 </ul>
 
-<h6
-  class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
->
-  <span>Saved reports</span>
-  <a class="link-secondary" href="#" aria-label="Add a new report">
-    <span data-feather="plus-circle"></span>
-  </a>
-</h6>
-<ul class="nav flex-column mb-2">
-  <li class="nav-item">
-    <a class="nav-link" href="#">
-      <span data-feather="bar-chart-2"></span>
-      Reports
-    </a>
-  </li>
-</ul>
 {% endblock %} {% block dashboard %} {% endblock %} {% block table %}
 <h2 class="border-bottom pb-3 mt-3">Danh sách bệnh nhân</h2>
 <div class="table-responsive">

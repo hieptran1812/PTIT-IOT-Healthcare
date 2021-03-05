@@ -1,7 +1,7 @@
 {% extends "dashboard.html" %} {% block nav %}
 <ul class="nav flex-column">
   <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="/admin">
+    <a class="nav-link" aria-current="page" href="/dashboard">
       <span data-feather="home"></span>
       Dashboard
     </a>
@@ -30,7 +30,7 @@
 <ul class="nav flex-column mb-2">
   {% for key, value in giamsat.items() %}
   <li class="nav-item">
-    <a class="nav-link" href="/{{key}}">
+    <a class="nav-link" href="/giamsat/{{key}}">
       <span data-feather="activity"></span>
       {{value}}
     </a>

@@ -86,17 +86,17 @@
             </div>
           </div>
         </div>
-        {%if user['inChargeDoctor']|length%}
-          <div class="card mt-3">
-            <div class="card-body">
-              <h5 class="text-center mb-3">Danh sách bác sĩ quản lý</h5>
-              <ul class="list-group">
-                  {% for doctor in user['inChargeDoctor'] %}
-                    <li class="list-group-item table-responsive" style="pointer-events: none">{{loop.index}}. {{doctor}}</li>
-                  {% endfor %}
-              </ul>
+          {%if user['inChargeDoctor']|length%}  
+            <div class="card mt-3">
+              <div class="card-body">
+                <h5 class="text-center mb-3">Danh sách bác sĩ quản lý</h5>
+                <ul class="list-group">
+                    {% for doctor in user['inChargeDoctor'] %}
+                      <li class="list-group-item table-responsive" style="pointer-events: none">{{loop.index}}. {{doctor}}</li>
+                    {% endfor %}
+                </ul>
+              </div>
             </div>
-          </div>
         {% else %}
           <div class="card mt-3">
             <div class="card-body">

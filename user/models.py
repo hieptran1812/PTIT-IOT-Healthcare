@@ -101,7 +101,10 @@ class User:
             'address': request.form.get('address'),
             'role': request.form.get('role'),
             'gender': request.form.get('gender'),
-            'phone': request.form.get('phone')
+            'phone': request.form.get('phone'),
+            'relatives': request.form.get('relatives'),
+            'relativePhone': request.form.get('relativePhone'),
+            'inChargeDoctor': request.form.get('inChargeDoctor')
         }
         userInDb = db.users.find_one({ # Tìm user trong database
             'username': user['username']
@@ -128,7 +131,10 @@ class User:
                 'urltiengrale': request.form.get('urltiengrale'),
                 'urltienggay': request.form.get('urltienggay'),
                 'address': request.form.get('address'),
-                'phone': request.form.get('phone')}
+                'phone': request.form.get('phone'),
+                'relatives': request.form.get('relatives'),
+                'relativePhone': request.form.get('relativePhone'),
+                'inChargeDoctor': request.form.get('inChargeDoctor')}
             }
         )
         flash('Cập nhật thành công!')

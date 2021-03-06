@@ -87,7 +87,6 @@ def user_profile(username):
         'username': username
     })
     name = session['username']
-    print(name)
     if request.method == 'GET':
         return render_template('user_profile.html', user=user, name=name)
     if request.method == 'POST':

@@ -86,18 +86,24 @@
             </div>
           </div>
         </div>
-        <div class="card mt-3">
-          <div class="card-body">
-            <h5 class="text-center mb-3">Danh sách bác sĩ quản lý</h5>
-            <ul class="list-group">
-              <li class="list-group-item">An item</li>
-              <li class="list-group-item">A second item</li>
-              <li class="list-group-item">A third item</li>
-              <li class="list-group-item">A fourth item</li>
-              <li class="list-group-item">And a fifth one</li>
-            </ul>
+        {%if user['inChargeDoctor']|length%}
+          <div class="card mt-3">
+            <div class="card-body">
+              <h5 class="text-center mb-3">Danh sách bác sĩ quản lý</h5>
+              <ul class="list-group">
+                  {% for doctor in user['inChargeDoctor'] %}
+                    <li class="list-group-item table-responsive" style="pointer-events: none">{{loop.index}}. {{doctor}}</li>
+                  {% endfor %}
+              </ul>
+            </div>
           </div>
-        </div>
+        {% else %}
+          <div class="card mt-3">
+            <div class="card-body">
+              <h5 class="text-center mb-3">Chưa có bác sĩ quản lý</h5>
+            </div>
+          </div>
+        {% endif %}
       </div>
       <div class="col-md-9">
         <div class="card mb-3">
@@ -146,6 +152,36 @@
                     name="phone"
                     class="form-control"
                     value="{{user['phone']}}"
+                  />
+                </div>
+              </div>
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Họ tên người thân</h5>
+                </div>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    name="relatives"
+                    class="form-control"
+                    value="{{user['relatives']}}"
+                  />
+                </div>
+              </div>
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Số điện thoại người thân</h5>
+                </div>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    name="relativePhone"
+                    class="form-control"
+                    value="{{user['relativePhone']}}"
                   />
                 </div>
               </div>

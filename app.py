@@ -69,17 +69,17 @@ def dashboard():
     })
     if userInfo['role'] == 'Admin':
         users = db.users.find({})
-        return render_template('dashboard.html', users = users)
+        return render_template('dashboard.html', users = users, name=username)
     elif userInfo['role'] == 'Bác sĩ':
         patients = db.users.find({
             'role': 'Bệnh nhân'
         })
-        return render_template('doctor.html', patients = patients)
+        return render_template('doctor.html', patients = patients, name=username)
     else:
         user = db.users.find_one({
             'username': username
         })
-        return render_template('patient.html', user = user)
+        return render_template('patient.html', user = user, name=username)
 
 @app.route('/user_profile/<username>', methods=['GET', 'POST']) # xem profile bệnh nhân và update user profile
 def user_profile(username):

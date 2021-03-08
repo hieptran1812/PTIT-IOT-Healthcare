@@ -74,21 +74,27 @@ def user_profile(username):
         return User().updateUser(username)
 
 @app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân
-def urlPartient(tenloaigiamsat, username):
+def urlPatient(tenloaigiamsat, username):
+    name=session['username']
     user_url = db.users.find_one({
         'username': username
     })
     url = None
     if str(tenloaigiamsat) == 'nhiptho':
-        url = str(user_url['urlnhiptho'])
+        if user_url['urlnhiptho'] is not None:
+            url = str(user_url['urlnhiptho'])
     if str(tenloaigiamsat) == 'tiengho':
-        url = str(user_url['urltiengho'])
+        if user_url['urltiengho'] is not None:
+            url = str(user_url['urltiengho'])
     if str(tenloaigiamsat) == 'tiengwheeze':
-        url = str(user_url['urltiengwheeze'])
+        if user_url['urltiengwheeze'] is not None:
+            url = str(user_url['urltiengwheeze'])
     if str(tenloaigiamsat) == 'tiengrale':
-        url = str(user_url['urltiengrale'])
+        if user_url['urltiengrale'] is not None:
+            url = str(user_url['urltiengrale'])
     if str(tenloaigiamsat) == 'tienggay':
-        url = str(user_url['urltienggay'])
+        if user_url['urltienggay'] is not None:
+            url = str(user_url['urltienggay'])
     users_patient = db.users.find({
         'role': 'Bệnh nhân'
     })
@@ -102,7 +108,7 @@ def urlPartient(tenloaigiamsat, username):
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat
-    return render_template('urlbenhnhan.html', tenloaigiamsat=tenloaigiamsat, username=username, giamsat=loaigiamsat, users=users_patient, url = url)
+    return render_template('urlbenhnhan.html', tenloaigiamsat=tenloaigiamsat, username=username, giamsat=loaigiamsat, users=users_patient, url=url, user_url=user_url, name=name)
 
 @app.route('/delete/<username>', methods=['GET'])
 def delete_user(username):

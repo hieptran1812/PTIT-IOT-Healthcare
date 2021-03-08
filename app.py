@@ -102,7 +102,7 @@ def urlPartient(tenloaigiamsat, username):
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat
-    return render_template('urlbenhnhan.html', tenloaigiamsat = tenloaigiamsat, username = username, giamsat = loaigiamsat, users = users_patient, url = url)
+    return render_template('urlbenhnhan.html', tenloaigiamsat=tenloaigiamsat, username=username, giamsat=loaigiamsat, users=users_patient, url = url)
 
 @app.route('/delete/<username>', methods=['GET'])
 def delete_user(username):

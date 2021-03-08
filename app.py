@@ -36,30 +36,11 @@ def index():
 
 @app.route('/adduser', methods=['POST', 'GET'])
 def adduser():
+    username = session['username']
     if request.method == 'GET':
-        return render_template('adduser.html')
+        return render_template('adduser.html', name=username)
     else: 
         return User().addUser()
-
-# @app.route('/doctor', methods=['GET'])
-# def doctor():
-#     patients = db.users.find({
-#         'role': 'Bệnh nhân'
-#     })
-#     return render_template('doctor.html', patients = patients)
-
-# @app.route('/patient', methods=['GET'])
-# def patient():
-#     username = session['username']
-#     user = db.users.find_one({
-#         'username': username
-#     })
-#     return render_template('patient.html', user = user)
-
-# @app.route('/admin', methods=['GET'])
-# def admin():
-#     users = db.users.find({})
-#     return render_template('dashboard.html', users = users)
 
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
@@ -136,6 +117,7 @@ def register():
 
 @app.route('/giamsat/<tenloaigiamsat>', methods=['GET'])
 def giamsat(tenloaigiamsat):
+    username = session['username']
     users = db.users.find({
         'role': 'Bệnh nhân'
     })
@@ -149,7 +131,7 @@ def giamsat(tenloaigiamsat):
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat
-        return render_template('giamsat.html', giamsat = loaigiamsat, users = users, tenloaigiamsat = tenloaigiamsat)
+        return render_template('giamsat.html', giamsat = loaigiamsat, users = users, tenloaigiamsat = tenloaigiamsat, name=username)
 
 @app.route("/signout")
 def signout():

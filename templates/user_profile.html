@@ -105,6 +105,25 @@
               </div>
             </div>
           {% endif %}
+        {% elif user['role'] == 'Bác sĩ'%}
+          {%if user['patientManagement']|length%}  
+            <div class="card mt-3">
+              <div class="card-body">
+                <h5 class="text-center mb-3">Danh sách bệnh nhân quản lý</h5>
+                <ul class="list-group">
+                    {% for patient in user['patientManagement'] %}
+                      <li class="list-group-item table-responsive" style="pointer-events: none">{{loop.index}}. {{patient}}</li>
+                    {% endfor %}
+                </ul>
+              </div>
+            </div>
+          {% else %}
+            <div class="card mt-3">
+              <div class="card-body">
+                <h5 class="text-center mb-3">Chưa quản lý bệnh nhân nào!</h5>
+              </div>
+            </div>
+          {% endif %}
         {% endif %}
       </div>
       <div class="col-md-9">

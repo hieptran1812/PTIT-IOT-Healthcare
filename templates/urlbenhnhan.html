@@ -1,5 +1,4 @@
 {% extends "dashboard.html" %} {% block nav %}
-<!-- <meta http-equiv="refresh" content="10"> -->
 <ul class="nav flex-column">
   <li class="nav-item">
     <a class="nav-link" aria-current="page" href="/dashboard">
@@ -44,7 +43,14 @@
     {% endif %}
   </li>
   {% endfor %}
+  <li>
+    <a class="nav-link" href="/report">
+      <span data-feather="file-text"></span>
+      Report
+    </a>
+  </li>
 </ul>
+
 {% endblock %} {% block dashboard %} {% endblock %} {% block table %}
 
 <!-- Truyền link url vào dưới -->
@@ -54,7 +60,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
   {% if url %}
     <iframe
-      width="1660"
+      width="2200"
       height="591"
       src={{ url.replace('watch?v=', 'embed/') }}
       frameborder="0"

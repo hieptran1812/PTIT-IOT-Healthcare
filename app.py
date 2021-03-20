@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from user.models import User, db
 import bcrypt
+from xlwt import Workbook 
 
 app = Flask(__name__)
 app.secret_key = "ptit"
@@ -16,7 +17,8 @@ app.secret_key = "ptit"
 
 not_need_authentication = [
     'index',
-    'static'
+    'static',
+    'register'
 ]
 
 @app.before_request
@@ -25,10 +27,11 @@ def before_request():
 # app.permanent_session_lifetime = timedelta(minutes=10)
   print(request.endpoint)
   if 'logged_in' not in session and request.endpoint not in not_need_authentication:
-    return redirect("/")
+      return redirect("/")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    
     if request.method == 'POST':
         return User().login()
     else:
@@ -118,8 +121,46 @@ def delete_user(username):
 def register():
     if request.method == 'GET':
         return render_template('register.html')
-    else: 
+    elif request.method == 'POST': 
         return User().register()
+
+@app.route('/report', methods=['GET', 'POST'])
+def report():
+    username = session['username']
+    users = db.users.find({
+        'role': 'Bệnh nhân'
+    })
+    loaigiamsat = {
+        'nhiptho': 'Nhịp thở',
+        'tiengho': 'Tiếng ho',
+        'tiengwheeze': 'Tiếng wheeze',
+        'tiengrale': 'Tiếng rale',
+        'tienggay': 'Tiếng gáy',
+    }
+    users = db.users.find({
+        'role': 'Bệnh nhân'
+    })
+    wb = Workbook() 
+    # add_sheet is used to create sheet. 
+    sheet1 = wb.add_sheet('Báo cáo') 
+    sheet1.write(0,0,'STT')
+    sheet1.write(0,1,'Tên đăng nhập')
+    sheet1.write(0,2,'Họ và tên')
+    sheet1.write(0,3,'Tần suất ho')
+    index, row= 0,0
+    for user in users:
+        index+=1
+        row+=1
+        sheet1.write(row,0,index)
+        sheet1.write(row,1,user['username'])
+        sheet1.write(row,2,user['name'])
+        sheet1.write(row,3,user['role'])
+        wb.save('./static/Report.xls')
+    if request.method == 'GET':
+        users = db.users.find({
+            'role': 'Bệnh nhân'
+        })
+        return render_template('report.html',giamsat = loaigiamsat, users = users, name=username)
 
 @app.route('/giamsat/<tenloaigiamsat>', methods=['GET'])
 def giamsat(tenloaigiamsat):
@@ -142,6 +183,10 @@ def giamsat(tenloaigiamsat):
 @app.route("/signout")
 def signout():
     return User().signout()
+
+# @app.route('/exportExcel', methods=['GET'])
+# def exportReport():
+#     return exportExcel()
 
 if __name__ == '__main__':
     app.run(port=8008)

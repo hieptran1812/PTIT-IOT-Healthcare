@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 from passlib.hash import pbkdf2_sha256
 from flask_pymongo import pymongo
+import pandas as pd
 
 username = "customer_db"
 password = "hiep1812"
@@ -73,7 +74,8 @@ class User:
             'address': request.form.get('address'),
             'role': request.form.get('role'),
             'gender': request.form.get('gender'),
-            'phone': request.form.get('phone')
+            'phone': request.form.get('phone'),
+            'note': request.form.get('note')
         }
         userInDb = db.users.find_one({ # Tìm user trong database
             'username': user['username']
@@ -104,6 +106,7 @@ class User:
             'phone': request.form.get('phone'),
             'relatives': request.form.get('relatives'),
             'relativePhone': request.form.get('relativePhone'),
+            'note': request.form.get('note')
             # 'inChargeDoctor': request.form.get('inChargeDoctor')
         }
         userInDb = db.users.find_one({ # Tìm user trong database
@@ -140,4 +143,24 @@ class User:
         )
         flash('Cập nhật thành công!')
         return redirect('/user_profile/' + username)
+
+# def exportExcel():
+#     wb = Workbook() 
+#     # add_sheet is used to create sheet. 
+#     sheet1 = wb.add_sheet('Báo cáo') 
+#     sheet1.write(0,0,'STT')
+#     sheet1.write(0,1,'Tên đăng nhập')
+#     sheet1.write(0,2,'Họ và tên')
+#     sheet1.write(0,3,'Tần suất ho')
+#     index, row= 0,1
+#     for user in users:
+#         index+=1
+#         row+=1
+#         sheet1.write(row,0,index)
+#         sheet1.write(row,1,user['username'])
+#         sheet1.write(row,2,user['name'])
+#         sheet1.write(row,3,user['role'])
+#     wb.save('Báo cáo.xls')
+#     alert="Xuất file excel thành công!"
+#     return render_template('report.html', alert=alert)
     

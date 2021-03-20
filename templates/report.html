@@ -44,7 +44,7 @@
   </li>
   {% endfor %}
   <li>
-    <a class="nav-link" href="/report">
+    <a class="nav-link active" href="/report">
       <span data-feather="file-text"></span>
       Report
     </a>
@@ -52,45 +52,51 @@
 </ul>
 
 {% endblock %} {% block dashboard %} {% endblock %} {% block table %}
-<h2 class="border-bottom pb-3 mt-3">Danh sách bệnh nhân</h2>
-<div class="table-responsive">
+<h2 class="border-bottom pb-3 mt-3">Báo cáo giám sát của bệnh nhân</h2>
+<div class="table-responsive" style="display: inline-block; height: 470px; width: 100%;overflow-y: scroll"> 
   <table class="table table-striped table-sm">
     <thead>
       <tr style="pointer-events: none">
         <th>STT</th>
         <th>Username</th>
         <th>Họ và tên</th>
-        <th>Điện thoại</th>
-        <th>Vai trò</th>
-        <th>Hành động</th>
+        <th>Tần suất ho</th>
+        <th>Thông tin chi tiết</th>
       </tr>
     </thead>
-    <tbody>
-      {% for user in users %}
-      <tr onclick="window.location.assign('/{{tenloaigiamsat}}/{{user['username']}}')"> 
-        <!-- thay bang link url -->
-        <td>{{loop.index}}</td>
-        <td>{{user['username']}}</td>
-        <td>{{user['name']}}</td>
-        <td>{{user['phone']}}</td>
-        <td class="role">{{user['role']}}</td>
-        <td>
-          <div
-            class="btn-group"
-            role="group"
-            aria-label="Basic mixed styles example"
-          >
-            <a type="button" class="btn btn-success btn-sm" href="/user_profile/{{user['username']}}""
-              >Thông tin</a
-            >
-            <a type="button" class="btn btn-danger btn-sm" href="/delete/{{user['username']}}">
-              Xóa
-            </a>
-          </div>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
+    <div>
+        <tbody>
+          {% for user in users %}
+            <td>{{loop.index}}</td>
+            <td>{{user['username']}}</td>
+            <td>{{user['name']}}</td>
+            <td class="role">{{user['role']}}</td>
+            <td>
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Basic mixed styles example"
+              >
+                <a type="button" class="btn btn-success btn-sm" href="/report/{{user['username']}}""
+                  >Báo cáo</a
+                >
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </div>
   </table>
 </div>
+
+{% if alert %}
+    <div class="alert alert-info">{{ alert }}</div>
+{% endif %}
+
+<div style="text-align: center">
+  <a type="button" class="btn btn-secondary btn-block m-2" href="./static/Report.xls" download>
+    Xuất excel
+  </a>
+</div>
+
 {% endblock %}

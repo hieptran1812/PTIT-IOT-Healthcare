@@ -75,7 +75,8 @@ class User:
             'role': request.form.get('role'),
             'gender': request.form.get('gender'),
             'phone': request.form.get('phone'),
-            'note': request.form.get('note')
+            'note': request.form.get('note'),
+            'frequencyOfCouch': request.form.get('frequencyOfCouch'),
         }
         userInDb = db.users.find_one({ # Tìm user trong database
             'username': user['username']
@@ -106,7 +107,8 @@ class User:
             'phone': request.form.get('phone'),
             'relatives': request.form.get('relatives'),
             'relativePhone': request.form.get('relativePhone'),
-            'note': request.form.get('note')
+            'note': request.form.get('note'),
+            'frequencyOfCouch': request.form.get('frequencyOfCouch'),
             # 'inChargeDoctor': request.form.get('inChargeDoctor')
         }
         userInDb = db.users.find_one({ # Tìm user trong database
@@ -137,6 +139,8 @@ class User:
                 'phone': request.form.get('phone'),
                 'relatives': request.form.get('relatives'),
                 'relativePhone': request.form.get('relativePhone'),
+                'frequencyOfCouch': request.form.get('frequencyOfCouch'),
+                'note': request.form.get('note'),
                 # 'inChargeDoctor': request.form.get('inChargeDoctor')
                 }
             }

@@ -76,6 +76,15 @@ def user_profile(username):
     if request.method == 'POST':
         return User().updateUser(username)
 
+@app.route('/report/<username>', methods=['GET', 'POST']) # xem profile bệnh nhân và update user profile
+def report_patient(username):
+    user = db.users.find_one({
+        'username': username
+    })
+    name = session['username']
+    if request.method == 'GET':
+        return render_template('report_couch.html', user=user, name=name)
+
 @app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân
 def urlPatient(tenloaigiamsat, username):
     name=session['username']
@@ -111,7 +120,7 @@ def urlPatient(tenloaigiamsat, username):
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat
-    return render_template('urlbenhnhan.html', tenloaigiamsat=tenloaigiamsat, username=username, giamsat=loaigiamsat, users=users_patient, url=url, user_url=user_url, name=name)
+        return render_template('urlbenhnhan.html', tenloaigiamsat=tenloaigiamsat, username=username, giamsat=loaigiamsat, users=users_patient, url=url, user_url=user_url, name=name)
 
 @app.route('/delete/<username>', methods=['GET'])
 def delete_user(username):
@@ -154,7 +163,7 @@ def report():
         sheet1.write(row,0,index)
         sheet1.write(row,1,user['username'])
         sheet1.write(row,2,user['name'])
-        sheet1.write(row,3,user['role'])
+        sheet1.write(row,3,user['frequencyOfCouch'])
         wb.save('./static/Report.xls')
     if request.method == 'GET':
         users = db.users.find({
@@ -183,10 +192,6 @@ def giamsat(tenloaigiamsat):
 @app.route("/signout")
 def signout():
     return User().signout()
-
-# @app.route('/exportExcel', methods=['GET'])
-# def exportReport():
-#     return exportExcel()
 
 if __name__ == '__main__':
     app.run(port=8008)

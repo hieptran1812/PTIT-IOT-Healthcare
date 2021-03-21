@@ -43,13 +43,14 @@
     {% endif %}
   </li>
   {% endfor %}
-  <li>
-    <a class="nav-link active" href="/report">
-      <span data-feather="file-text"></span>
-      Report
-    </a>
-  </li>
 </ul>
+<h6
+  class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+>
+  <a style="text-decoration:none" class="link-secondary" href="/report">
+    <span>Báo cáo</span>
+  </a>
+</h6>
 
 {% endblock %} {% block dashboard %} {% endblock %} {% block table %}
 <h2 class="border-bottom pb-3 mt-3">Báo cáo giám sát của bệnh nhân</h2>
@@ -70,7 +71,7 @@
             <td>{{loop.index}}</td>
             <td>{{user['username']}}</td>
             <td>{{user['name']}}</td>
-            <td class="role">{{user['role']}}</td>
+            <td class="role">{{user['frequencyOfCouch']}}</td>
             <td>
               <div
                 class="btn-group"
@@ -88,10 +89,6 @@
     </div>
   </table>
 </div>
-
-{% if alert %}
-    <div class="alert alert-info">{{ alert }}</div>
-{% endif %}
 
 <div style="text-align: center">
   <a type="button" class="btn btn-secondary btn-block m-2" href="./static/Report.xls" download>

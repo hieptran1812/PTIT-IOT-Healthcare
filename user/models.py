@@ -143,24 +143,4 @@ class User:
         )
         flash('Cập nhật thành công!')
         return redirect('/user_profile/' + username)
-
-# def exportExcel():
-#     wb = Workbook() 
-#     # add_sheet is used to create sheet. 
-#     sheet1 = wb.add_sheet('Báo cáo') 
-#     sheet1.write(0,0,'STT')
-#     sheet1.write(0,1,'Tên đăng nhập')
-#     sheet1.write(0,2,'Họ và tên')
-#     sheet1.write(0,3,'Tần suất ho')
-#     index, row= 0,1
-#     for user in users:
-#         index+=1
-#         row+=1
-#         sheet1.write(row,0,index)
-#         sheet1.write(row,1,user['username'])
-#         sheet1.write(row,2,user['name'])
-#         sheet1.write(row,3,user['role'])
-#     wb.save('Báo cáo.xls')
-#     alert="Xuất file excel thành công!"
-#     return render_template('report.html', alert=alert)
-    
+  

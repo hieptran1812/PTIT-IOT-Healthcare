@@ -124,7 +124,7 @@ class User:
 
     def deleteUser(self, username):
         db.users.delete_one({'username': username})
-        return redirect(url_for('admin'))
+        return redirect(url_for('dashboard'))
     
     def updateUser(self, username):
         db.users.update_one(

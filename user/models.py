@@ -20,9 +20,6 @@ class User:
         session['user'] = user
         return jsonify(user), 200
 
-#   def signup(self):
-#     print(request.form)
-
 #     # Create the user object
 #     user = {
 #       "_id": uuid.uuid4().hex,

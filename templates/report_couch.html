@@ -11,7 +11,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="/user_profile/{{name}}">
+    <a class="nav-link" href="/user_profile/{{name}}">
       <span data-feather="users"></span>
       Xem profile
     </a>
@@ -66,7 +66,7 @@
 <h6
   class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
 >
-  <a style="text-decoration:none" class="link-secondary" href="/report">
+  <a style="text-decoration:none; color:blue" class="link-secondary" href="/report">
     <span>Báo cáo</span>
   </a>
 </h6>
@@ -84,7 +84,9 @@
                 </div>
               </div>
               <br>
-              <div class="row pb-3 border-bottom d-flex align-items-center">
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
                 <div class="col-sm-3">
                   <h5 class="mb-0">Họ và tên</h5>
                 </div>
@@ -112,11 +114,29 @@
                 </div>
                 <div class="col-sm-9">{{user['address']}}</div>
               </div>
-              <div class="row pb-3 d-flex align-items-center pt-3">
+              <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
                 <div class="col-sm-3">
                   <h5 class="mb-0">Vào viện lúc</h5>
                 </div>
                 <div class="col-sm-9">20h40p ngày 20/3/2021</div>
+              </div>
+              <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Khoa</h5>
+                </div>
+                <div class="col-sm-9">hô hấp</div>
+              </div>
+              <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Bác sĩ theo dõi</h5>
+                </div>
+                <div class="col-sm-9">Nguyễn Văn Anh</div>
+              </div>
+              <div class="row pb-3 d-flex align-items-center pt-3">
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Y tá theo dõi</h5>
+                </div>
+                <div class="col-sm-9">Mai Đức Bình</div>
               </div>
               <br/>
               <div class="row pb-3 d-flex align-items-center">
@@ -124,52 +144,34 @@
                     <h3 class="mb-0">PHẦN CHUYÊN MÔN</h3>
                 </div>
               </div>
-              <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
                 <div class="col-sm-3">
-                  <h5 class="mb-0">Giám sát nhịp thở</h5>
+                  <h5 class="mb-0">Kết quả theo dõi</h5>
                 </div>
                 <div class="col-sm-9">
-                    {{user['urlnhiptho']}}
+                    Ho nhiều
                 </div>
               </div>
               <div
                 class="row pb-3 border-bottom d-flex align-items-center pt-3"
               >
                 <div class="col-sm-3">
-                  <h5 class="mb-0">Giám sát tiếng ho</h5>
+                  <h5 class="mb-0">Phát hiện nhịp thở bất thường</h5>
                 </div>
                 <div class="col-sm-9">
-                    {{user['urltiengho']}}
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Giám sát tiếng wheeze</h5>
-                </div>
-                <div class="col-sm-9">
-                    {{user['urltiengwheeze']}}
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Giám sát tiếng rale</h5>
-                </div>
-                <div class="col-sm-9">
-                    {{user['urltiengrale']}}
+                    5 lần/phút
                 </div>
               </div>
               <div
                 class="row pb-3 d-flex align-items-center pt-3"
               >
                 <div class="col-sm-3">
-                  <h5 class="mb-0">Giám sát tiếng gáy</h5>
+                  <h5 class="mb-0">Số lần ho</h5>
                 </div>
                 <div class="col-sm-9">
-                    {{user['urltienggay']}}
+                    5 lần/phút
                 </div>
               </div>
               <br/>

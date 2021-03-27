@@ -61,6 +61,7 @@
         <th>STT</th>
         <th>Username</th>
         <th>Họ và tên</th>
+        <th>Nhịp thở bất thường</th>
         <th>Tần suất ho</th>
         <th>Thông tin chi tiết</th>
       </tr>
@@ -71,6 +72,7 @@
             <td>{{loop.index}}</td>
             <td>{{user['username']}}</td>
             <td>{{user['name']}}</td>
+            <td class="role">{{user['frequencyOfCouch']}}</td>
             <td class="role">{{user['frequencyOfCouch']}}</td>
             <td>
               <div

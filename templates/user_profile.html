@@ -100,7 +100,7 @@
                 <div class="card-body">
                   <h5 class="text-center mb-3">Danh sách bác sĩ quản lý</h5>
                   <ul class="list-group">
-                      {% for doctor in user['inChargeDoctor'] %}
+                      {% for doctor in user['inChargeDoctor'].split(",") %}
                         <li class="list-group-item table-responsive" style="pointer-events: none">{{loop.index}}. {{doctor}}</li>
                       {% endfor %}
                   </ul>
@@ -173,6 +173,44 @@
                 class="row pb-3 border-bottom d-flex align-items-center pt-3"
               >
                 <div class="col-sm-3">
+                  <h5 class="mb-0">Ngày sinh</h5>
+                </div>
+                <div class="col-sm-9">{{user['birth']}}</div>
+              </div>
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Nghề nghiệp</h5>
+                </div>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    name="job"
+                    class="form-control"
+                    value="{{user['job']}}"
+                  />
+                </div>
+              </div>
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Tên bác sĩ, y tá phụ trách</h5>
+                </div>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    name="inChargeDoctor"
+                    class="form-control"
+                    value="{{user['inChargeDoctor']}}"
+                  />
+                </div>
+              </div>
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
+                <div class="col-sm-3">
                   <h5 class="mb-0">Số điện thoại</h5>
                 </div>
                 <div class="col-sm-9">
@@ -211,6 +249,36 @@
                     name="relativePhone"
                     class="form-control"
                     value="{{user['relativePhone']}}"
+                  />
+                </div>
+              </div>
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Ngày vào viện</h5>
+                </div>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    name="dayPatient"
+                    class="form-control"
+                    value="{{user['dayPatient']}}"
+                  />
+                </div>
+              </div>
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Triệu chứng</h5>
+                </div>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    name="symptom"
+                    class="form-control"
+                    value="{{user['symptom']}}"
                   />
                 </div>
               </div>

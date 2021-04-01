@@ -115,7 +115,7 @@ def urlPatient(tenloaigiamsat, username):
         'tiengho': 'Tiếng ho',
         'tiengwheeze': 'Tiếng wheeze',
         'tiengrale': 'Tiếng rale',
-        'tienggay': 'Tiếng gáy',
+        'tiengngay': 'Tiếng ngáy',
     }
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:

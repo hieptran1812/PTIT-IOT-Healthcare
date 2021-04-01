@@ -57,9 +57,9 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/giamsat/tienggay">
+    <a class="nav-link" href="/giamsat/tiengngay">
       <span data-feather="activity"></span>
-      Tiếng gáy
+      Tiếng ngáy
     </a>
   </li>
 </ul>
@@ -347,19 +347,19 @@
                   class="row pb-3 border-bottom d-flex align-items-center pt-3"
                 >
                   <div class="col-sm-3">
-                    <h5 class="mb-0">URL tiếng gáy</h5>
+                    <h5 class="mb-0">URL tiếng ngáy</h5>
                   </div>
                   <div class="col-sm-9">
                     <input
                       type="text"
-                      name="urltienggay"
+                      name="urltiengngay"
                       class="form-control"
-                      value="{{user['urltienggay']}}"
+                      value="{{user['urltiengngay']}}"
                     />
                   </div>
                 </div>
               {% endif %}
-              <div class="row pb-3 d-flex align-items-center pt-3">
+              <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
                 <div class="col-sm-3">
                   <h5 class="mb-0">Địa chỉ</h5>
                 </div>
@@ -385,7 +385,6 @@
                   />
                 </div>
               </div>
-
               {% with messages = get_flashed_messages() %} {% if messages %}
               <div
                 class="row pb-3 d-flex align-items-center pt-3 justify-content-center"

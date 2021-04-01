@@ -129,6 +129,8 @@ class User:
             return redirect('adduser')
 
     def deleteUser(self, username):
+        user = db.users.find_one({'username': username})
+        flash('Đã xóa ' + str(user['role']).lower() + " " + str(user['name']) + "!")
         db.users.delete_one({'username': username})
         return redirect(url_for('dashboard'))
     
@@ -152,6 +154,7 @@ class User:
                 'dayPatient': request.form.get('dayPatient'),
                 'symptom': request.form.get('symptom'),
                 'birth': request.form.get('birth'),
+                'gender': request.form.get('gender'),
                 }
             }
         )

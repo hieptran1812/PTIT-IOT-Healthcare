@@ -167,7 +167,14 @@
                 <div class="col-sm-3">
                   <h5 class="mb-0">Giới tính</h5>
                 </div>
-                <div class="col-sm-9">{{user['gender']}}</div>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    name="gender"
+                    class="form-control"
+                    value="{{user['gender']}}"
+                  />
+                </div>
               </div>
               <div
                 class="row pb-3 border-bottom d-flex align-items-center pt-3"
@@ -189,21 +196,6 @@
                     name="job"
                     class="form-control"
                     value="{{user['job']}}"
-                  />
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Tên bác sĩ, y tá phụ trách</h5>
-                </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="inChargeDoctor"
-                    class="form-control"
-                    value="{{user['inChargeDoctor']}}"
                   />
                 </div>
               </div>

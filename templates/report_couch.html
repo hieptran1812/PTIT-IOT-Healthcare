@@ -100,31 +100,17 @@
                 </div>
                 <div class="col-sm-9">{{user['gender']}}</div>
               </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Số điện thoại</h5>
-                </div>
-                <div class="col-sm-9">{{user['phone']}}</div>
-              </div>
               <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
                 <div class="col-sm-3">
-                  <h5 class="mb-0">Địa chỉ</h5>
+                  <h5 class="mb-0">Ngày nhập viện</h5>
                 </div>
-                <div class="col-sm-9">{{user['address']}}</div>
-              </div>
-              <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Vào viện lúc</h5>
-                </div>
-                <div class="col-sm-9">20h40p ngày 20/3/2021</div>
+                <div class="col-sm-9">{{user['dayPatient']}}</div>
               </div>
               <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
                 <div class="col-sm-3">
                   <h5 class="mb-0">Khoa</h5>
                 </div>
-                <div class="col-sm-9">hô hấp</div>
+                <div class="col-sm-9">Hô hấp</div>
               </div>
               <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
                 <div class="col-sm-3">
@@ -142,6 +128,16 @@
               <div class="row pb-3 d-flex align-items-center">
                 <div class="col-sm-3">
                     <h3 class="mb-0">PHẦN CHUYÊN MÔN</h3>
+                </div>
+              </div>
+              <div
+                class="row pb-3 border-bottom d-flex align-items-center pt-3"
+              >
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Triệu chứng</h5>
+                </div>
+                <div class="col-sm-9">
+                    {{user['symptom']}}
                 </div>
               </div>
               <div

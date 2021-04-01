@@ -221,141 +221,143 @@
                   />
                 </div>
               </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Họ tên người thân</h5>
+              {% if user['role']=="Bệnh nhân"%}
+                <div
+                  class="row pb-3 border-bottom d-flex align-items-center pt-3"
+                >
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">Họ tên người thân</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="relatives"
+                      class="form-control"
+                      value="{{user['relatives']}}"
+                    />
+                  </div>
                 </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="relatives"
-                    class="form-control"
-                    value="{{user['relatives']}}"
-                  />
+                <div
+                  class="row pb-3 border-bottom d-flex align-items-center pt-3"
+                >
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">Số điện thoại người thân</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="relativePhone"
+                      class="form-control"
+                      value="{{user['relativePhone']}}"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Số điện thoại người thân</h5>
+                <div
+                  class="row pb-3 border-bottom d-flex align-items-center pt-3"
+                >
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">Ngày vào viện</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="dayPatient"
+                      class="form-control"
+                      value="{{user['dayPatient']}}"
+                    />
+                  </div>
                 </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="relativePhone"
-                    class="form-control"
-                    value="{{user['relativePhone']}}"
-                  />
+                <div
+                  class="row pb-3 border-bottom d-flex align-items-center pt-3"
+                >
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">Triệu chứng</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="symptom"
+                      class="form-control"
+                      value="{{user['symptom']}}"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Ngày vào viện</h5>
+                <div
+                  class="row pb-3 border-bottom d-flex align-items-center pt-3"
+                >
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">URL nhịp thở</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="urlnhiptho"
+                      class="form-control"
+                      value="{{user['urlnhiptho']}}"
+                    />
+                  </div>
                 </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="dayPatient"
-                    class="form-control"
-                    value="{{user['dayPatient']}}"
-                  />
+                <div
+                  class="row pb-3 border-bottom d-flex align-items-center pt-3"
+                >
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">URL tiếng ho</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="urltiengho"
+                      class="form-control"
+                      value="{{user['urltiengho']}}"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Triệu chứng</h5>
+                <div
+                  class="row pb-3 border-bottom d-flex align-items-center pt-3"
+                >
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">URL tiếng wheeze</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="urltiengwheeze"
+                      class="form-control"
+                      value="{{user['urltiengwheeze']}}"
+                    />
+                  </div>
                 </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="symptom"
-                    class="form-control"
-                    value="{{user['symptom']}}"
-                  />
+                <div
+                  class="row pb-3 border-bottom d-flex align-items-center pt-3"
+                >
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">URL tiếng rale</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="urltiengrale"
+                      class="form-control"
+                      value="{{user['urltiengrale']}}"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">URL nhịp thở</h5>
+                <div
+                  class="row pb-3 border-bottom d-flex align-items-center pt-3"
+                >
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">URL tiếng gáy</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="urltienggay"
+                      class="form-control"
+                      value="{{user['urltienggay']}}"
+                    />
+                  </div>
                 </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="urlnhiptho"
-                    class="form-control"
-                    value="{{user['urlnhiptho']}}"
-                  />
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">URL tiếng ho</h5>
-                </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="urltiengho"
-                    class="form-control"
-                    value="{{user['urltiengho']}}"
-                  />
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">URL tiếng wheeze</h5>
-                </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="urltiengwheeze"
-                    class="form-control"
-                    value="{{user['urltiengwheeze']}}"
-                  />
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">URL tiếng rale</h5>
-                </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="urltiengrale"
-                    class="form-control"
-                    value="{{user['urltiengrale']}}"
-                  />
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">URL tiếng gáy</h5>
-                </div>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    name="urltienggay"
-                    class="form-control"
-                    value="{{user['urltienggay']}}"
-                  />
-                </div>
-              </div>
+              {% endif %}
               <div class="row pb-3 d-flex align-items-center pt-3">
                 <div class="col-sm-3">
                   <h5 class="mb-0">Địa chỉ</h5>

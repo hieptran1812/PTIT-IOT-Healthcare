@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "app.py", line 2, in <module>
+    from user.models import User, db
+  File "/home/namvh/PTIT-IOT-Healthcare/user/models.py", line 2, in <module>
+    from passlib.hash import pbkdf2_sha256
+ModuleNotFoundError: No module named 'passlib'

@@ -196,4 +196,4 @@ def signout():
     return User().signout()
 
 if __name__ == '__main__':
-    app.run(port=8008)
+    app.run(port=8008, debug=True)

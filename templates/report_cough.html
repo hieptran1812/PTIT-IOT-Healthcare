@@ -78,65 +78,76 @@
         <div class="card mb-3">
           <div class="card-body ms-2 me-2">
             {% block form %}
-              <div class="row pb-3 d-flex align-items-center">
+              <div class="row pb-2 d-flex align-items-center">
                 <div class="col-sm-3">
                     <h3 class="mb-0">PHẦN HÀNH CHÍNH</h3>
                 </div>
               </div>
               <br>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
+              <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
                 <div class="col-sm-3">
-                  <h5>Họ và tên</h5>
+                  <h5>1.1 Bệnh viện</h5>
                 </div>
-                <div class="col-sm-9">{{user['name']}}</div>
+                <div class="col-sm-3">Bệnh viện Lao phổi</div>
+                <div class="col-sm-3">
+                  <h5>Khoa</h5>
+                </div>
+                <div class="col-sm-2">{{user['department']}}</div>
               </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
+              <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
                 <div class="col-sm-3">
-                  <h5>Giới tính</h5>
+                  <h5>1.2 Họ và tên bệnh nhân</h5>
                 </div>
-                <div class="col-sm-9">{{user['gender']}}</div>
+                <div class="col-sm-3">{{user['name']}}</div>
+                <div class="col-sm-3">
+                  <h5>Tuổi</h5>
+                </div>
+                <div class="col-sm-2">{{user['age']}}</div>
               </div>
-              <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Ngày nhập viện</h5>
+              <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
+                <div class="col-sm-2">
+                  <h5>1.3 Giới tính</h5>
                 </div>
-                <div class="col-sm-9">{{user['dayPatient']}}</div>
+                <div class="col-sm-1">{{user['gender']}}</div>
+                <div class="col-sm-2">
+                  <h5>Dân tộc</h5>
+                </div>
+                <div class="col-sm-1">{{user['ethnicGroup']}}</div>
+                <div class="col-sm-3">
+                  <h5>Mã số bệnh nhân</h5>
+                </div>
+                <div class="col-sm-2">{{user['id']}}</div>
               </div>
-              <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+              <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
                 <div class="col-sm-3">
-                  <h5 class="mb-0">Khoa</h5>
+                  <h5>1.4 Ngày nhập viện</h5>
                 </div>
-                <div class="col-sm-9">Hô hấp</div>
+                <div class="col-sm-3">{{user['dayPatient']}}</div>
+                <div class="col-sm-3">
+                  <h5>Theo dõi từ ngày</h5>
+                </div>
+                <div class="col-sm-2">{{user['follow']}}</div>
               </div>
-              <div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+              <div class="row pb-4 d-flex align-items-center pt-2">
                 <div class="col-sm-3">
-                  <h5 class="mb-0">Bác sĩ theo dõi</h5>
+                  <h5>1.5 Cán bộ nghiện cứu</h5>
                 </div>
-                <div class="col-sm-9">Nguyễn Văn Anh</div>
-              </div>
-              <div class="row pb-3 d-flex align-items-center pt-3">
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Y tá theo dõi</h5>
-                </div>
-                <div class="col-sm-9">Mai Đức Bình</div>
+                <div class="col-sm-3">Test</div>
               </div>
               <br/>
-              <div class="row pb-3 d-flex align-items-center">
+              <div class="row pb-2 d-flex align-items-center">
                 <div class="col-sm-3">
-                    <h3 class="mb-0">PHẦN THỬ NGHIỆM</h3>
+                    <h3 class="mb-0">PHẦN CHUYÊN MÔN</h3>
                 </div>
               </div>
               <div
-                class="row pb-3 d-flex align-items-center pt-3"
+                class="row pb-3d-flex align-items-center pt-3"
               >
                 <div class="col-sm-3">
                   <h5 class="mb-0">Thử nghiệm có gắn máy</h5>
                 </div>
               </div>
+              <br>
               <div class="table-responsive" style="display: inline-block; height: 470px; width: 100%;overflow-y: scroll"> 
                 <table class="table table-striped table-sm">
                   <thead>

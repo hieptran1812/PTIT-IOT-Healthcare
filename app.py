@@ -31,7 +31,6 @@ def before_request():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    
     if request.method == 'POST':
         return User().login()
     else:
@@ -42,7 +41,7 @@ def adduser():
     username = session['username']
     if request.method == 'GET':
         return render_template('adduser.html', name=username)
-    else: 
+    else:
         return User().addUser()
 
 @app.route('/dashboard', methods=['GET'])
@@ -76,14 +75,13 @@ def user_profile(username):
     if request.method == 'POST':
         return User().updateUser(username)
 
-@app.route('/report/<username>', methods=['GET', 'POST']) # xem profile bệnh nhân và update user profile
+@app.route('/report/<username>', methods=['GET', 'POST']) 
 def report_patient(username):
     user = db.users.find_one({
         'username': username
     })
-    name = session['username']
     if request.method == 'GET':
-        return render_template('report_couch.html', user=user, name=name)
+        return render_template('report_cough.html', user=user)
 
 @app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân
 def urlPatient(tenloaigiamsat, username):
@@ -130,7 +128,7 @@ def delete_user(username):
 def register():
     if request.method == 'GET':
         return render_template('register.html')
-    elif request.method == 'POST': 
+    elif request.method == 'POST':
         return User().register()
 
 @app.route('/report', methods=['GET', 'POST'])
@@ -144,27 +142,29 @@ def report():
         'tiengho': 'Tiếng ho',
         'tiengwheeze': 'Tiếng wheeze',
         'tiengrale': 'Tiếng rale',
-        'tienggay': 'Tiếng gáy',
+        'tiengngay': 'Tiếng ngáy',
     }
     users = db.users.find({
         'role': 'Bệnh nhân'
     })
-    wb = Workbook() 
-    # add_sheet is used to create sheet. 
-    sheet1 = wb.add_sheet('Báo cáo') 
-    sheet1.write(0,0,'STT')
-    sheet1.write(0,1,'Tên đăng nhập')
-    sheet1.write(0,2,'Họ và tên')
-    sheet1.write(0,3,'Tần suất ho')
-    index, row= 0,0
-    for user in users:
-        index+=1
-        row+=1
-        sheet1.write(row,0,index)
-        sheet1.write(row,1,user['username'])
-        sheet1.write(row,2,user['name'])
-        sheet1.write(row,3,user['frequencyOfCouch'])
-        wb.save('./static/Report.xls')
+    # wb = Workbook() 
+    # # add_sheet is used to create sheet. 
+    # sheet1 = wb.add_sheet('Báo cáo') 
+    # sheet1.write(0,0,'STT')
+    # sheet1.write(0,1,'Tên đăng nhập')
+    # sheet1.write(0,2,'Họ và tên')
+    # sheet1.write(0,3,'Tần suất ho')
+    # index, row= 0,0
+    # for user in users:
+    #     index+=1
+    #     row+=1
+    #     sheet1.write(row,0,index)
+    #     sheet1.write(row,1,user['id'])
+    #     sheet1.write(row,2,user['name'])
+    #     sheet1.write(row,3,user['gender'])
+    #     sheet1.write(row,3,user['department'])
+    #     sheet1.write(row,3,user['dayPatient'])
+    #     wb.save('./static/Report.xls')
     if request.method == 'GET':
         users = db.users.find({
             'role': 'Bệnh nhân'
@@ -182,7 +182,7 @@ def giamsat(tenloaigiamsat):
         'tiengho': 'Tiếng ho',
         'tiengwheeze': 'Tiếng wheeze',
         'tiengrale': 'Tiếng rale',
-        'tienggay': 'Tiếng gáy',
+        'tiengngay': 'Tiếng ngáy',
     }
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
@@ -194,4 +194,4 @@ def signout():
     return User().signout()
 
 if __name__ == '__main__':
-    app.run(port=8008)
+    app.run(port=8008, debug=True)

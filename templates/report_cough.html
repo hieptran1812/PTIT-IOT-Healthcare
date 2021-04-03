@@ -73,7 +73,7 @@
 
 {% endblock %} {% block content %}
 <div class="d-flex flex-column pt-3 pb-2 mb-3">
-  <h1 class="h2 pb-4" style="text-align:center;">BỆNH ÁN HÔ HẤP</h1>
+  <h1 class="h2 pb-4" style="text-align:center;">THEO DÕI CÁC TRIỆU CHỨNG HÔ HẤP THỰC NGHIỆM</h1>
     <div class="row gutters-sm">
         <div class="card mb-3">
           <div class="card-body ms-2 me-2">
@@ -88,7 +88,7 @@
                 class="row pb-3 border-bottom d-flex align-items-center pt-3"
               >
                 <div class="col-sm-3">
-                  <h5 class="mb-0">Họ và tên</h5>
+                  <h5>Họ và tên</h5>
                 </div>
                 <div class="col-sm-9">{{user['name']}}</div>
               </div>
@@ -96,7 +96,7 @@
                 class="row pb-3 border-bottom d-flex align-items-center pt-3"
               >
                 <div class="col-sm-3">
-                  <h5 class="mb-0">Giới tính</h5>
+                  <h5>Giới tính</h5>
                 </div>
                 <div class="col-sm-9">{{user['gender']}}</div>
               </div>
@@ -127,53 +127,88 @@
               <br/>
               <div class="row pb-3 d-flex align-items-center">
                 <div class="col-sm-3">
-                    <h3 class="mb-0">PHẦN CHUYÊN MÔN</h3>
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Triệu chứng</h5>
-                </div>
-                <div class="col-sm-9">
-                    {{user['symptom']}}
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Kết quả theo dõi</h5>
-                </div>
-                <div class="col-sm-9">
-                    Ho nhiều
-                </div>
-              </div>
-              <div
-                class="row pb-3 border-bottom d-flex align-items-center pt-3"
-              >
-                <div class="col-sm-3">
-                  <h5 class="mb-0">Phát hiện nhịp thở bất thường</h5>
-                </div>
-                <div class="col-sm-9">
-                    5 lần/phút
+                    <h3 class="mb-0">PHẦN THỬ NGHIỆM</h3>
                 </div>
               </div>
               <div
                 class="row pb-3 d-flex align-items-center pt-3"
               >
                 <div class="col-sm-3">
-                  <h5 class="mb-0">Số lần ho</h5>
+                  <h5 class="mb-0">Thử nghiệm có gắn máy</h5>
                 </div>
-                <div class="col-sm-9">
-                    5 lần/phút
+              </div>
+              <div class="table-responsive" style="display: inline-block; height: 470px; width: 100%;overflow-y: scroll"> 
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr style="pointer-events: none">
+                      <th class="col-0.6">STT</th>
+                      <th class="col-2">Thời gian</th>
+                      <th class="col-2.5">Ho</th>
+                      <th>Ngáy</th>
+                      <th class="col-1.8">Nhịp thở</th>
+                      <th>Thở khò khè</th>
+                      <th>Rale</th>
+                      <th>Ghi chú</th>
+                    </tr>
+                  </thead>
+                  <div>
+                      <tbody>
+                          <td>1</td>
+                          <td>{{user['id']}}</td>
+                          <td>{{user['dayResearch']}}</td>
+                          <td>{{user['cough']}}</td>
+                          <td>{{user['snore']}}</td>
+                          <td>{{user['breathing']}}</td>
+                          <td>{{user['wheeze']}}</td>
+                          <td>{{user['rale']}}</td>
+                          <td>{{user['note']}}</td>
+                        </tr>
+                      </tbody>
+                  </div>
+                </table>
+              </div>
+              <div
+                class="row pb-3d-flex align-items-center pt-3"
+              >
+                <div class="col-sm-3">
+                  <h5 class="mb-0">Thử nghiệm không gắn máy</h5>
                 </div>
               </div>
               <br/>
+              <div class="table-responsive" style="display: inline-block; height: 470px; width: 100%;overflow-y: scroll"> 
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr style="pointer-events: none">
+                      <th class="col-0.6">STT</th>
+                      <th class="col-2">Thời gian</th>
+                      <th class="col-2.5">Ho</th>
+                      <th>Ngáy</th>
+                      <th class="col-1.8">Nhịp thở</th>
+                      <th>Thở khò khè</th>
+                      <th>Rale</th>
+                      <th>Ghi chú</th>
+                    </tr>
+                  </thead>
+                  <div>
+                      <tbody>
+                          <td>1</td>
+                          <td>{{user['id']}}</td>
+                          <td>{{user['dayResearch']}}</td>
+                          <td>{{user['cough']}}</td>
+                          <td>{{user['snore']}}</td>
+                          <td>{{user['breathing']}}</td>
+                          <td>{{user['wheeze']}}</td>
+                          <td>{{user['rale']}}</td>
+                          <td>{{user['note']}}</td>
+                        </tr>
+                      </tbody>
+                  </div>
+                </table>
+              </div>
+              <br/>
               <div style="text-align: center">
-                <a type="button" class="btn btn-secondary btn-block m-2" href="https://s3.amazonaws.com/slideshare-downloads/bnhnbnhphitcnghnmntnh-150405105624-conversion-gate01.pdf?response-content-disposition=attachment&Signature=kePYe2rTxNiTLY7NSZ8WWoIBWig%3D&Expires=1616305192&AWSAccessKeyId=AKIATZMST4DYZS7SJPXU" download="benhnhan.pdf">
-                  Xuất PDF
+                <a type="button" class="btn btn-secondary btn-block m-2" href="#themmoi">
+                  Thêm mới
                 </a>
               </div>
             {% endblock %}

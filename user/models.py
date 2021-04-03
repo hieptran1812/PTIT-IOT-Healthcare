@@ -12,56 +12,11 @@ client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database(database_name)
 
 class User:
-    
-    ## login  
-    def start_session(self, user):
-        del user['password']
-        session['logged_in'] = True
-        session['user'] = user
-        return jsonify(user), 200
-
-#     # Create the user object
-#     user = {
-#       "_id": uuid.uuid4().hex,
-#       "name": request.form.get('name'),
-#       "email": request.form.get('email'),
-#       "password": request.form.get('password')
-#     }
-
-#     # Encrypt the password
-#     user['password'] = pbkdf2_sha256.encrypt(user['password'])
-
-#     # Check for existing email address
-#     if db.users.find_one({ "email": user['email'] }):
-#       return jsonify({ "error": "Email address already in use" }), 400
-
-#     if db.users.insert_one(user):
-#       return self.start_session(user)
-
-#     return jsonify({ "error": "Signup failed" }), 400
-  
-    def signout(self):
-        session.pop('logged_in', None)
-        return redirect('/')
-  
-    def login(self):
-        user = db.users.find_one({'username': request.form['username']})
-       
-        # if user and pbkdf2_sha256.verify(request.form['password'], user['password']):
-        #   return self.start_session(user)
-        if user and user['password'] == request.form['password']:
-            session['logged_in'] = True
-            session['username'] = request.form['username']
-            return redirect('/dashboard')
-        else:
-            error = "Tên đăng nhập hoặc mật khẩu sai!"
-            return render_template('index.html', error = error)
-    
-    def register(self):
-        user = {
-            'name': request.form['name'],
-            'username': request.form['username'],
-            'password': request.form['password'],
+    def __init__(self):
+        self.userProperties = {
+            'name': request.form.get('name'),
+            'username': request.form.get('username'),
+            'password': request.form.get('password'),
             'email': request.form.get('email'),
             'urlnhiptho': request.form.get('urlnhiptho'),
             'urltiengho': request.form.get('urltiengho'),
@@ -73,13 +28,47 @@ class User:
             'gender': request.form.get('gender'),
             'phone': request.form.get('phone'),
             'note': request.form.get('note'),
-            'frequencyOfCouch': request.form.get('frequencyOfCouch'),
             'inChargeDoctor': request.form.get('inChargeDoctor'),
             'job': request.form.get('job'),
             'dayPatient': request.form.get('dayPatient'),
             'symptom': request.form.get('symptom'),
             'birth': request.form.get('birth'),
-        }
+            'id': request.form.get('id'),#mã số bệnh nhân
+            'follow': request.form.get('follow'),#theo dõi từ ngày
+            'researchStaff': request.form.get('researchStaff'),#cán bộ nghiên cứu
+            'ethnicGroup': request.form.get('ethnicGroup'), #dân tộc
+            'age': request.form.get('age'),
+            'department': request.form.get('department'),#khoa
+            'dayResearch': request.form.get('dayResearch'), #ngày thử nghiệm
+            'cough': request.form.get('cough'), #Ho
+            'breathing': request.form.get('breathing'), #nhịp Thở
+            'wheeze': request.form.get('wheeze'), #thở khò khè
+            'rale': request.form.get('rale'), #rale
+            'snore': request.form.get('snore'), #ngáy
+        }   
+    ## login 
+    def start_session(self, user):
+        del user['password']
+        session['logged_in'] = True
+        session['user'] = user
+        return jsonify(user), 200
+  
+    def signout(self):
+        session.pop('logged_in', None)
+        return redirect('/')
+  
+    def login(self):
+        user = db.users.find_one({'username': request.form.get('username')})
+        if user and user['password'] == request.form.get('password'):
+            session['logged_in'] = True
+            session['username'] = request.form.get('username')
+            return redirect('/dashboard')
+        else:
+            error = "Tên đăng nhập hoặc mật khẩu sai!"
+            return render_template('index.html', error = error)
+    
+    def register(self):
+        user = self.userProperties
         userInDb = db.users.find_one({ # Tìm user trong database
             'username': user['username']
         })
@@ -93,30 +82,7 @@ class User:
 
     ## CRUD User
     def addUser(self):
-        user = {
-            'name': request.form['name'],
-            'username': request.form['username'],
-            'password': request.form['password'],
-            'email': request.form.get('email'),
-            'urlnhiptho': request.form.get('urlnhiptho'),
-            'urltiengho': request.form.get('urltiengho'),
-            'urltiengwheeze': request.form.get('urltiengwheeze'),
-            'urltiengrale': request.form.get('urltiengrale'),
-            'urltiengngay': request.form.get('urltiengngay'),
-            'address': request.form.get('address'),
-            'role': request.form.get('role'),
-            'gender': request.form.get('gender'),
-            'phone': request.form.get('phone'),
-            'relatives': request.form.get('relatives'),
-            'relativePhone': request.form.get('relativePhone'),
-            'note': request.form.get('note'),
-            'frequencyOfCouch': request.form.get('frequencyOfCouch'),
-            'inChargeDoctor': request.form.get('inChargeDoctor'),
-            'job': request.form.get('job'),
-            'dayPatient': request.form.get('dayPatient'),
-            'symptom': request.form.get('symptom'),
-            'birth': request.form.get('birth'),
-        }
+        user = self.userProperties
         userInDb = db.users.find_one({ # Tìm user trong database
             'username': user['username']
         })
@@ -130,6 +96,7 @@ class User:
 
     def deleteUser(self, username):
         user = db.users.find_one({'username': username})
+        print('t')
         flash('Đã xóa ' + str(user['role']).lower() + " " + str(user['name']) + "!")
         db.users.delete_one({'username': username})
         return redirect(url_for('dashboard'))
@@ -137,27 +104,8 @@ class User:
     def updateUser(self, username):
         db.users.update_one(
             {"username": username}, 
-            {"$set": {
-                'urlnhiptho': request.form.get('urlnhiptho'),
-                'urltiengho': request.form.get('urltiengho'),
-                'urltiengwheeze': request.form.get('urltiengwheeze'),
-                'urltiengrale': request.form.get('urltiengrale'),
-                'urltiengngay': request.form.get('urltiengngay'),
-                'address': request.form.get('address'),
-                'phone': request.form.get('phone'),
-                'relatives': request.form.get('relatives'),
-                'relativePhone': request.form.get('relativePhone'),
-                'frequencyOfCouch': request.form.get('frequencyOfCouch'),
-                'note': request.form.get('note'),
-                'inChargeDoctor': request.form.get('inChargeDoctor'),
-                'job': request.form.get('job'),
-                'dayPatient': request.form.get('dayPatient'),
-                'symptom': request.form.get('symptom'),
-                'birth': request.form.get('birth'),
-                'gender': request.form.get('gender'),
-                }
+            {"$set": self.userProperties
             }
         )
         flash('Cập nhật thành công!')
         return redirect('/user_profile/' + username)
-  

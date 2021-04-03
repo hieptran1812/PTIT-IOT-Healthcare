@@ -100,10 +100,26 @@ class User:
         db.users.delete_one({'username': username})
         return redirect(url_for('dashboard'))
     
-    def updateUser(self, username):
+    def updateUser(self, username): #update user in profile
         db.users.update_one(
             {"username": username}, 
-            {"$set": self.userProperties}
+            {"$set":
+            {'urlnhiptho': request.form.get('urlnhiptho'),
+            'urltiengho': request.form.get('urltiengho'),
+            'urltiengwheeze': request.form.get('urltiengwheeze'),
+            'urltiengrale': request.form.get('urltiengrale'),
+            'urltiengngay': request.form.get('urltiengngay'),
+            'address': request.form.get('address'),
+            'gender': request.form.get('gender'),
+            'phone': request.form.get('phone'),
+            'note': request.form.get('note'),
+            'job': request.form.get('job'),
+            'dayPatient': request.form.get('dayPatient'),
+            'symptom': request.form.get('symptom'),
+            'birth': request.form.get('birth'),
+            'id': request.form.get('id'),#mã số bệnh nhân
+            'dayResearch': request.form.get('dayResearch'), #ngày thử nghiệm
+            }}
         )
         flash('Cập nhật thành công!')
         return redirect('/user_profile/' + username)

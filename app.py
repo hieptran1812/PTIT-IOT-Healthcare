@@ -90,21 +90,9 @@ def urlPatient(tenloaigiamsat, username):
         'username': username
     })
     url = None
-    if str(tenloaigiamsat) == 'nhiptho':
-        if user_url['urlnhiptho'] is not None:
-            url = str(user_url['urlnhiptho'])
-    if str(tenloaigiamsat) == 'tiengho':
-        if user_url['urltiengho'] is not None:
-            url = str(user_url['urltiengho'])
-    if str(tenloaigiamsat) == 'tiengwheeze':
-        if user_url['urltiengwheeze'] is not None:
-            url = str(user_url['urltiengwheeze'])
-    if str(tenloaigiamsat) == 'tiengrale':
-        if user_url['urltiengrale'] is not None:
-            url = str(user_url['urltiengrale'])
-    if str(tenloaigiamsat) == 'tienggay':
-        if user_url['urltienggay'] is not None:
-            url = str(user_url['urltienggay'])
+    if tenloaigiamsat in ['nhiptho','tiengho','tiengwheeze','tiengrale','tiengngay']:
+        if user_url['url'+tenloaigiamsat] is not None:
+            url=str(user_url['url'+tenloaigiamsat])
     users_patient = db.users.find({
         'role': 'Bệnh nhân'
     })

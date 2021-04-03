@@ -94,13 +94,12 @@
             </div>
           </div>
         </div>
-        {%if user['role'] == 'Bệnh nhân'%}
+        {%if user['role'] == 'Bệnh nhân' and 'inChargeDoctor' in user%}
           {%if user['inChargeDoctor'] is not none%}  
               <div class="card mt-3">
                 <div class="card-body">
                   <h5 class="text-center mb-3">Danh sách bác sĩ quản lý</h5>
                   <ul class="list-group">
-                    
                       {% for doctor in user['inChargeDoctor'].split(",") %}
                         <li class="list-group-item table-responsive" style="pointer-events: none">{{loop.index}}. {{doctor}}</li>
                       {% endfor %}

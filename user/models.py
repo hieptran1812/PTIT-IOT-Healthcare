@@ -96,7 +96,6 @@ class User:
 
     def deleteUser(self, username):
         user = db.users.find_one({'username': username})
-        print('t')
         flash('Đã xóa ' + str(user['role']).lower() + " " + str(user['name']) + "!")
         db.users.delete_one({'username': username})
         return redirect(url_for('dashboard'))
@@ -104,8 +103,7 @@ class User:
     def updateUser(self, username):
         db.users.update_one(
             {"username": username}, 
-            {"$set": self.userProperties
-            }
+            {"$set": self.userProperties}
         )
         flash('Cập nhật thành công!')
         return redirect('/user_profile/' + username)

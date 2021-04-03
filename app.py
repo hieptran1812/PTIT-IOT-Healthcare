@@ -147,24 +147,38 @@ def report():
     users = db.users.find({
         'role': 'Bệnh nhân'
     })
-    # wb = Workbook() 
-    # # add_sheet is used to create sheet. 
-    # sheet1 = wb.add_sheet('Báo cáo') 
-    # sheet1.write(0,0,'STT')
-    # sheet1.write(0,1,'Tên đăng nhập')
-    # sheet1.write(0,2,'Họ và tên')
-    # sheet1.write(0,3,'Tần suất ho')
-    # index, row= 0,0
-    # for user in users:
-    #     index+=1
-    #     row+=1
-    #     sheet1.write(row,0,index)
-    #     sheet1.write(row,1,user['id'])
-    #     sheet1.write(row,2,user['name'])
-    #     sheet1.write(row,3,user['gender'])
-    #     sheet1.write(row,3,user['department'])
-    #     sheet1.write(row,3,user['dayPatient'])
-    #     wb.save('./static/Report.xls')
+    wb = Workbook() 
+    # add_sheet is used to create sheet. 
+    sheet1 = wb.add_sheet('Báo cáo') 
+    sheet1.write(0,0,'STT')
+    sheet1.write(0,1,'Mã số bệnh nhân')
+    sheet1.write(0,2,'Họ và tên')
+    sheet1.write(0,3,'Giới tính')
+    sheet1.write(0,4,'Khoa')
+    sheet1.write(0,5,'Ngày nhập viện')
+    index, row= 0,0
+    for user in users:
+        index+=1
+        row+=1
+        sheet1.write(row,0,index)
+        if('id' in user):
+            sheet1.write(row,1,user['id'])
+        else:
+            sheet1.write(row,1," ")
+        sheet1.write(row,2,user['name'])
+        if('gender' in user):
+            sheet1.write(row,3,user['gender'])
+        else:
+            sheet1.write(row,3," ")
+        if('department' in user):
+            sheet1.write(row,4,user['department'])
+        else:
+            sheet1.write(row,4," ")
+        if('dayPatient' in user):
+            sheet1.write(row,5,user['dayPatient'])
+        else:
+            sheet1.write(row,5," ")
+        wb.save('./static/Report.xls')
     if request.method == 'GET':
         users = db.users.find({
             'role': 'Bệnh nhân'
@@ -194,4 +208,4 @@ def signout():
     return User().signout()
 
 if __name__ == '__main__':
-    app.run(port=8008, debug=True)
+    app.run(port=8008)

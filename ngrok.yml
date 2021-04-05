@@ -1,0 +1,5 @@
+tunnels:
+  ptit05:
+    proto: http
+    hostname: ptit05.ngrok.io
+    addr: 10.170.100.150:8008

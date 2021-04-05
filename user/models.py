@@ -100,7 +100,7 @@ class User:
         db.users.delete_one({'username': username})
         return redirect(url_for('dashboard'))
     
-    def updateUser(self, username): #update user in profile
+    def updateUserProfile(self, username): #update user in profile
         db.users.update_one(
             {"username": username}, 
             {"$set":
@@ -123,3 +123,58 @@ class User:
         )
         flash('Cập nhật thành công!')
         return redirect('/user_profile/' + username)
+    
+    def updateUserReport(self, username): #update user in report
+        # user={
+        #     'name': request.form.get('name'),
+        #     'address': request.form.get('address'),
+        #     'gender': request.form.get('gender'),
+        #     'note': request.form.get('note'),
+        #     'dayPatient': request.form.get('dayPatient'),
+        #     'id': request.form.get('id'),#mã số bệnh nhân
+        #     'follow': request.form.get('follow'),#theo dõi từ ngày
+        #     'researchStaff': request.form.get('researchStaff'),#cán bộ nghiên cứu
+        #     'ethnicGroup': request.form.get('ethnicGroup'), #dân tộc
+        #     'age': request.form.get('age'),
+        #     'department': request.form.get('department'),#khoa
+        #     'dayResearch': request.form.get('dayResearch'), #ngày thử nghiệm
+        #     'cough': request.form.get('cough'), #Ho
+        #     'breathing': request.form.get('breathing'), #nhịp Thở
+        #     'wheeze': request.form.get('wheeze'), #thở khò khè
+        #     'rale': request.form.get('rale'), #rale
+        #     'snore': request.form.get('snore'), #ngáy
+        user=self.userProperties
+        userInDb = db.users.find_one({ # Tìm user trong database
+            'username': user['username']
+        })
+        if userInDb:
+            db.users.update_one(
+                {"username": username}, 
+                {"$set":
+                    {
+                        # 'gender': request.form.get('gender'),
+                        # 'note': request.form.get('note'),
+                        # 'dayPatient': request.form.get('dayPatient'),
+                        # 'symptom': request.form.get('symptom'),
+                        # 'birth': request.form.get('birth'),
+                        # 'id': request.form.get('id'),#mã số bệnh nhân
+                        # 'follow': request.form.get('follow'),#theo dõi từ ngày
+                        # 'researchStaff': request.form.get('researchStaff'),#cán bộ nghiên cứu
+                        # 'ethnicGroup': request.form.get('ethnicGroup'), #dân tộc
+                        # 'age': request.form.get('age'),
+                        # 'department': request.form.get('department'),#khoa
+                        # 'dayResearch': request.form.get('dayResearch'), #ngày thử nghiệm
+                        'cough.$': request.form.get('cough'), #Ho
+                        # 'breathing': request.form.get('breathing'), #nhịp Thở
+                        # 'wheeze': request.form.get('wheeze'), #thở khò khè
+                        # 'rale': request.form.get('rale'), #rale
+                        # 'snore': request.form.get('snore'), #ngáy
+                    }
+                }
+            )
+            flash('Cập nhật thành công!')
+            return redirect('/report/' + username)
+        else:
+            insertUser = db.users.insert_one(user)
+            flash("Thêm thông tin bệnh nhân thành công!")
+            return render_template('report_cough.html')

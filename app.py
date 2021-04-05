@@ -73,7 +73,7 @@ def user_profile(username):
     if request.method == 'GET':
         return render_template('user_profile.html', user=user, name=name)
     if request.method == 'POST':
-        return User().updateUser(username)
+        return User().updateUserProfile(username)
 
 @app.route('/report/<username>', methods=['GET', 'POST']) 
 def report_patient(username):
@@ -81,6 +81,8 @@ def report_patient(username):
         'username': username
     })
     if request.method == 'GET':
+        return render_template('report_cough.html', user=user)
+    if request.method == 'POST':
         return render_template('report_cough.html', user=user)
 
 @app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân

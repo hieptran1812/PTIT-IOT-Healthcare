@@ -84,7 +84,7 @@ def report_patient(username):
         'username': username
     })
     if request.method == 'GET':
-        return render_template('report_cough.html', user=user, name=name)
+        return render_template('report_cough.html', user=user, name=name, username=username)
     if request.method == 'POST':
         return User().updateUserReport(username)
         

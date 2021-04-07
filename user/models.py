@@ -125,24 +125,6 @@ class User:
         return redirect('/user_profile/' + username)
     
     def updateUserReport(self, username): #update user in report
-        # user={
-        #     'name': request.form.get('name'),
-        #     'address': request.form.get('address'),
-        #     'gender': request.form.get('gender'),
-        #     'note': request.form.get('note'),
-        #     'dayPatient': request.form.get('dayPatient'),
-        #     'id': request.form.get('id'),#mã số bệnh nhân
-        #     'follow': request.form.get('follow'),#theo dõi từ ngày
-        #     'researchStaff': request.form.get('researchStaff'),#cán bộ nghiên cứu
-        #     'ethnicGroup': request.form.get('ethnicGroup'), #dân tộc
-        #     'age': request.form.get('age'),
-        #     'department': request.form.get('department'),#khoa
-        #     'dayResearch': request.form.get('dayResearch'), #ngày thử nghiệm
-        #     'cough': request.form.get('cough'), #Ho
-        #     'breathing': request.form.get('breathing'), #nhịp Thở
-        #     'wheeze': request.form.get('wheeze'), #thở khò khè
-        #     'rale': request.form.get('rale'), #rale
-        #     'snore': request.form.get('snore'), #ngáy
         user=self.userProperties
         userInDb = db.users.find_one({ # Tìm user trong database
             'username': user['username']
@@ -152,23 +134,21 @@ class User:
                 {"username": username}, 
                 {"$set":
                     {
-                        # 'gender': request.form.get('gender'),
-                        # 'note': request.form.get('note'),
-                        # 'dayPatient': request.form.get('dayPatient'),
-                        # 'symptom': request.form.get('symptom'),
-                        # 'birth': request.form.get('birth'),
-                        # 'id': request.form.get('id'),#mã số bệnh nhân
-                        # 'follow': request.form.get('follow'),#theo dõi từ ngày
-                        # 'researchStaff': request.form.get('researchStaff'),#cán bộ nghiên cứu
-                        # 'ethnicGroup': request.form.get('ethnicGroup'), #dân tộc
-                        # 'age': request.form.get('age'),
-                        # 'department': request.form.get('department'),#khoa
-                        # 'dayResearch': request.form.get('dayResearch'), #ngày thử nghiệm
-                        'cough.$': request.form.get('cough'), #Ho
-                        # 'breathing': request.form.get('breathing'), #nhịp Thở
-                        # 'wheeze': request.form.get('wheeze'), #thở khò khè
-                        # 'rale': request.form.get('rale'), #rale
-                        # 'snore': request.form.get('snore'), #ngáy
+                        'dayPatient': request.form.get('dayPatient'),
+                        'id': request.form.get('id'),#mã số bệnh nhân
+                        'follow': request.form.get('follow'),#theo dõi từ ngày
+                        'researchStaff': request.form.get('researchStaff'),#cán bộ nghiên cứu
+                        'ethnicGroup': request.form.get('ethnicGroup'), #dân tộc
+                        'age': request.form.get('age'),
+                        'department': request.form.get('department'),#khoa
+                        'dayResearch': request.form.getlist('dayResearch'), #ngày thử nghiệm
+                        'dayPatient': request.form.get('dayPatient'), #ngày nhập viện
+                        'cough': request.form.getlist('cough'), #Ho
+                        'breathing': request.form.getlist('breathing'), #nhịp Thở
+                        'wheeze': request.form.getlist('wheeze'), #thở khò khè
+                        'rale': request.form.getlist('rale'), #rale
+                        'snore': request.form.getlist('snore'), #ngáy
+                        'note': request.form.getlist('note'),
                     }
                 }
             )
@@ -177,4 +157,4 @@ class User:
         else:
             insertUser = db.users.insert_one(user)
             flash("Thêm thông tin bệnh nhân thành công!")
-            return render_template('report_cough.html')
+            return redirect('/report/' + username)

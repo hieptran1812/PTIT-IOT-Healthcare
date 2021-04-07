@@ -11,17 +11,19 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/user_profile/{{name}}">
+    <a class="nav-link" href="/user_profile/{{name['username']}}">
       <span data-feather="users"></span>
       Xem profile
     </a>
   </li>
+  {% if name['role']=='Admin' %}
   <li class="nav-item">
     <a class="nav-link" href="/adduser">
       <span data-feather="user-plus"></span>
       Thêm người dùng
     </a>
   </li>
+  {% endif %}
 </ul>
 <h6
   class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
@@ -72,7 +74,6 @@
 </h6>
 
 {% endblock %} {% block content %}
-<form method="POST">
   <div class="d-flex flex-column pt-3 pb-2 mb-3">
     <h1 class="h2 pb-4" style="text-align:center;">THEO DÕI CÁC TRIỆU CHỨNG HÔ HẤP THỰC NGHIỆM</h1>
       <div class="row gutters-sm">
@@ -86,164 +87,170 @@
                     </div>
                     {% endif %}
                 {% endwith %}
-                <div class="row pb-4 d-flex align-items-center">
-                  <div class="col-sm-3">
-                      <h3 class="mb-0">PHẦN HÀNH CHÍNH</h3>
+                <form method="POST">
+                  <div class="row pb-4 d-flex align-items-center">
+                    <div class="col-sm-3">
+                        <h3 class="mb-0">PHẦN HÀNH CHÍNH</h3>
+                    </div>
                   </div>
-                </div>
-                <div class="row pb-2 d-flex align-items-center border-bottom">
-                  <div class="col-sm-3">
-                    <h5>1.1 Bệnh viện</h5>
+                  <div class="row pb-2 d-flex align-items-center border-bottom">
+                    <div class="col-sm-3">
+                      <h5>1.1 Bệnh viện</h5>
+                    </div>
+                    <div class="col-sm-3">Bệnh viện Lao phổi</div>
+                    <div class="col-sm-1">
+                      <h5>Khoa</h5>
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text", name="department", class="border-info", value="{{user['department']}}">
+                    </div>
                   </div>
-                  <div class="col-sm-3">Bệnh viện Lao phổi</div>
-                  <div class="col-sm-1">
-                    <h5>Khoa</h5>
+                  <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
+                    <div class="col-sm-3">
+                      <h5>1.2 Họ và tên bệnh nhân</h5>
+                    </div>
+                    <div class="col-sm-3">
+                      {{user['name']}}
+                    </div>
+                    <div class="col-sm-1">
+                      <h5>Tuổi</h5>
+                    </div>
+                    <div class="col-sm-4">
+                      <input type="text", name="age", class="border-info", value="{{user['age']}}">
+                    </div>
                   </div>
-                  <div class="col-sm-5"><input class="border-info" type="text" ,name="department" ,style="border:0"></div>
-                </div>
-                <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
-                  <div class="col-sm-3">
-                    <h5>1.2 Họ và tên bệnh nhân</h5>
+                  <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
+                    <div class="col-sm-2">
+                      <h5>1.3 Giới tính</h5>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text", name="gender", class="border-info", value="{{user['gender']}}">
+                    </div>
+                    <div class="col-sm-1">
+                      <h5>Dân tộc</h5>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text", name="ethnicGroup", class="border-info", value="{{user['ethnicGroup']}}">
+                    </div>
+                    <div class="col-sm-2">
+                      <h5>Mã số bệnh nhân</h5>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text", name="id", class="border-info", value="{{user['id']}}">
+                    </div>
                   </div>
-                  <div class="col-sm-3">
-                    <input type="text" class="border-info", name="name"></div>
-                  <div class="col-sm-1">
-                    <h5>Tuổi</h5>
+                  <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
+                    <div class="col-sm-3">
+                      <h5>1.4 Ngày nhập viện</h5>
+                    </div>
+                    <div class="col-sm-3">
+                      <input type="text", name="dayPatient", class="border-info", value="{{user['dayPatient']}}">
+                    </div>
+                    <div class="col-sm-2">
+                      <h5>Theo dõi từ ngày</h5>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text", name="follow", class="border-info", value="{{user['follow']}}">
+                    </div>
                   </div>
-                  <div class="col-sm-4">
-                    <input type="text", name="age", class="border-info"></div>
-                </div>
-                <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
-                  <div class="col-sm-2">
-                    <h5>1.3 Giới tính</h5>
+                  <div class="row pb-4 d-flex align-items-center pt-2">
+                    <div class="col-sm-3">
+                      <h5>1.5 Cán bộ nghiên cứu</h5>
+                    </div>
+                    <div class="col-sm-3">
+                      <input type="text", name="researchStaff", class="border-info", value="{{user['researchStaff']}}">
+                    </div>
                   </div>
-                  <div class="col-sm-2">
-                    <input type="text", name="gender", class="border-info">
+                  <br>
+                  <div class="row pb-2 d-flex align-items-center">
+                    <div class="col-sm-3">
+                        <h3 class="mb-0">PHẦN CHUYÊN MÔN</h3>
+                    </div>
                   </div>
-                  <div class="col-sm-1">
-                    <h5>Dân tộc</h5>
+                  <div class="row pb-3d-flex align-items-center pt-3">
+                    <div class="col-sm-3">
+                      <h5 class="mb-0">Thử nghiệm có gắn máy</h5>
+                    </div>
                   </div>
-                  <div class="col-sm-2">
-                    <input type="text", name="ethnicGroup", class="border-info"></div>
-                  <div class="col-sm-2">
-                    <h5>Mã số bệnh nhân</h5>
-                  </div>
-                  <div class="col-sm-2">
-                    <input type="text", name="id", class="border-info">
-                  </div>
-                </div>
-                <div class="row pb-2 border-bottom d-flex align-items-center pt-2">
-                  <div class="col-sm-3">
-                    <h5>1.4 Ngày nhập viện</h5>
-                  </div>
-                  <div class="col-sm-3">
-                    <input type="text" ,name="dayPatient", class="border-info">
-                  </div>
-                  <div class="col-sm-2">
-                    <h5>Theo dõi từ ngày</h5>
-                  </div>
-                  <div class="col-sm-2">
-                    <input type="text" ,name="follow", class="border-info">
-                  </div>
-                </div>
-                <div class="row pb-4 d-flex align-items-center pt-2">
-                  <div class="col-sm-3">
-                    <h5>1.5 Cán bộ nghiên cứu</h5>
-                  </div>
-                  <div class="col-sm-3">
-                    <input type="text", name="researchStaff", class="border-info">
-                  </div>
-                </div>
-                <br>
-                <div class="row pb-2 d-flex align-items-center">
-                  <div class="col-sm-3">
-                      <h3 class="mb-0">PHẦN CHUYÊN MÔN</h3>
-                  </div>
-                </div>
-                <div class="row pb-3d-flex align-items-center pt-3">
-                  <div class="col-sm-3">
-                    <h5 class="mb-0">Thử nghiệm có gắn máy</h5>
-                  </div>
-                </div>
-                <br>
-                <div class="table-responsive" style="display: inline-block; height: 300px; width: 100%;overflow-y: scroll"> 
-                  <table class="table table-bordered">
-                    <thead style="background-color: #c6dbf0;">
-                      <tr>
-                        <th class="col-0.6">STT</th>
-                        <th class="col-1.5">Thời gian</th>
-                        <th class="col-2.5">Ho</th>
-                        <th>Ngáy</th>
-                        <th class="col-1.8">Nhịp thở</th>
-                        <th>Thở khò khè</th>
-                        <th>Rale</th>
-                        <th>Ghi chú</th>
-                      </tr>
-                    </thead>
+                  <br>
+                  <div class="table-responsive" style="display: inline-block; height: 300px; width: 100%;overflow-y: scroll"> 
+                    <table class="table table-bordered">
+                      <thead style="background-color: #c6dbf0;">
+                        <tr>
+                          <th class="col-0.6">STT</th>
+                          <th class="col-1.5">Thời gian</th>
+                          <th class="col-2.5">Ho</th>
+                          <th>Ngáy</th>
+                          <th class="col-1.8">Nhịp thở</th>
+                          <th>Thở khò khè</th>
+                          <th>Rale</th>
+                          <th>Ghi chú</th>
+                        </tr>
+                      </thead>
                         <tbody>
                           {% for index in range(35)%}
                           <tr>
                             <td>{{index+1}}</td>
-                            <td><input type="text" value="{{user['dayResearch']}}" name="dayResearch", size="15", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['cough'][loop.index-1]}}" name="cough{{index}}", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['snore']}}" name="snore", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['breathing']}}" name="breathing", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['wheeze']}}" name="wheeze", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['rale']}}" name="rale", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['note']}}" name="note", size="10", style="border:0; width: 100%"></td>
+                            <td><input type="text" value="{{user['dayResearch'][index]}}" name="dayResearch", size="15", style="border:0; width: 100%"></td>
+                            <td><input type="text" value="{{user['cough'][index]}}" name="cough", size="10", style="border:0; width: 100%"></td>
+                            <td><input type="text" value="{{user['snore'][index]}}" name="snore", size="10", style="border:0; width: 100%"></td>
+                            <td><input type="text" value="{{user['breathing'][index]}}" name="breathing", size="10", style="border:0; width: 100%"></td>
+                            <td><input type="text" value="{{user['wheeze'][index]}}" name="wheeze", size="10", style="border:0; width: 100%"></td>
+                            <td><input type="text" value="{{user['rale'][index]}}" name="rale", size="10", style="border:0; width: 100%"></td>
+                            <td><input type="text" value="{{user['note'][index]}}" name="note", size="10", style="border:0; width: 100%"></td>
                           </tr>
                           {% endfor %}
                         </tbody>
-                  </table>
-                </div>
-                <div
-                  class="row pb-3d-flex align-items-center pt-3"
-                >
-                  <div class="col-sm-3">
-                    <h5 class="mb-0">Thử nghiệm không gắn máy</h5>
+                    </table>
                   </div>
-                </div>
-                <br/>
-                <div class="table-responsive" style="display: inline-block; height: 300px; width: 100%;overflow-y: scroll"> 
-                  <table class="table table-bordered">
-                    <thead style="background-color: #c6dbf0;">
-                      <tr style="pointer-events: none">
-                        <th class="col-0.6">STT</th>
-                        <th class="col-1.5">Thời gian</th>
-                        <th class="col-2.5">Ho</th>
-                        <th>Ngáy</th>
-                        <th class="col-1.8">Nhịp thở</th>
-                        <th>Thở khò khè</th>
-                        <th>Rale</th>
-                        <th>Ghi chú</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                          {% for index in range(40)%}
-                          <tr>
-                            <td>{{index+1}}</td>
-                            <td><input type="text" value="{{user['dayResearch']}}" name="dayResearch", size="15", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['cough'][loop.index-1]}}" name="cough", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['snore']}}" name="snore", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['breathing']}}" name="breathing", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['wheeze']}}" name="wheeze", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['rale']}}" name="rale", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['note']}}" name="note", size="10", style="border:0; width: 100%"></td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
-                  </table>
-                </div>
-                <br/>
-                <div style="text-align: center">
-                  <button type="submit" class="btn btn-secondary btn-block m-2">
-                    Thêm mới
-                  </button>
-                </div>
-              {% endblock %}
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
+                  <div
+                    class="row pb-3d-flex align-items-center pt-3"
+                  >
+                    <div class="col-sm-3">
+                      <h5 class="mb-0">Thử nghiệm không gắn máy</h5>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="table-responsive" style="display: inline-block; height: 300px; width: 100%;overflow-y: scroll"> 
+                    <table class="table table-bordered">
+                      <thead style="background-color: #c6dbf0;">
+                        <tr style="pointer-events: none">
+                          <th class="col-0.6">STT</th>
+                          <th class="col-1.5">Thời gian</th>
+                          <th class="col-2.5">Ho</th>
+                          <th>Ngáy</th>
+                          <th class="col-1.8">Nhịp thở</th>
+                          <th>Thở khò khè</th>
+                          <th>Rale</th>
+                          <th>Ghi chú</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for index in range(40)%}
+                        <tr>
+                          <td>{{index+1}}</td>
+                          <td><input type="text" value="{{user['dayResearch'][index+35]}}" name="dayResearch", size="15", style="border:0; width: 100%"></td>
+                          <td><input type="text" value="{{user['cough'][index+35]}}" name="cough", size="10", style="border:0; width: 100%"></td>
+                          <td><input type="text" value="{{user['snore'][index+35]}}" name="snore", size="10", style="border:0; width: 100%"></td>
+                          <td><input type="text" value="{{user['breathing'][index+35]}}" name="breathing", size="10", style="border:0; width: 100%"></td>
+                          <td><input type="text" value="{{user['wheeze'][index+35]}}" name="wheeze", size="10", style="border:0; width: 100%"></td>
+                          <td><input type="text" value="{{user['rale'][index+35]}}" name="rale", size="10", style="border:0; width: 100%"></td>
+                          <td><input type="text" value="{{user['note'][index+35]}}" name="note", size="10", style="border:0; width: 100%"></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                  <br/>
+                  <div style="text-align: center">
+                    <button type="submit" class="btn btn-secondary btn-block m-2">
+                      Cập nhật
+                    </button>
+                  </div>
+                </form>
+            {%endblock %}
+        </div>  
+      </div>  
+    </div>  
+  </div>  
 {% endblock %}

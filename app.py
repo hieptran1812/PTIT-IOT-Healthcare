@@ -77,14 +77,17 @@ def user_profile(username):
 
 @app.route('/report/<username>', methods=['GET', 'POST']) 
 def report_patient(username):
+    name = db.users.find_one({
+        'username': session['username']
+    })
     user = db.users.find_one({
         'username': username
     })
     if request.method == 'GET':
-        return render_template('report_cough.html', user=user)
+        return render_template('report_cough.html', user=user, name=name)
     if request.method == 'POST':
-        return render_template('report_cough.html', user=user)
-
+        return User().updateUserReport(username)
+        
 @app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân
 def urlPatient(tenloaigiamsat, username):
     name=session['username']
@@ -121,9 +124,11 @@ def register():
     elif request.method == 'POST':
         return User().register()
 
-@app.route('/report', methods=['GET', 'POST'])
+@app.route('/report', methods=['GET'])
 def report():
-    username = session['username']
+    name = db.users.find_one({
+        'username': session['username']
+    })
     users = db.users.find({
         'role': 'Bệnh nhân'
     })
@@ -134,9 +139,6 @@ def report():
         'tiengrale': 'Tiếng rale',
         'tiengngay': 'Tiếng ngáy',
     }
-    users = db.users.find({
-        'role': 'Bệnh nhân'
-    })
     wb = Workbook() 
     # add_sheet is used to create sheet. 
     sheet1 = wb.add_sheet('Báo cáo') 
@@ -173,14 +175,17 @@ def report():
         users = db.users.find({
             'role': 'Bệnh nhân'
         })
-        return render_template('report.html',giamsat = loaigiamsat, users = users, name=username)
+        return render_template('report.html', giamsat=loaigiamsat, users=users, name=name)
 
 @app.route('/giamsat/<tenloaigiamsat>', methods=['GET'])
 def giamsat(tenloaigiamsat):
-    username = session['username']
+    name = db.users.find_one({
+        'username': session['username']
+    })
     users = db.users.find({
         'role': 'Bệnh nhân'
     })
+    print(users)
     loaigiamsat = {
         'nhiptho': 'Nhịp thở',
         'tiengho': 'Tiếng ho',
@@ -191,11 +196,11 @@ def giamsat(tenloaigiamsat):
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat
-        return render_template('giamsat.html', giamsat = loaigiamsat, users = users, tenloaigiamsat = tenloaigiamsat, name=username)
+        return render_template('giamsat.html', giamsat = loaigiamsat, users = users, tenloaigiamsat = tenloaigiamsat, name=name)
 
 @app.route("/signout")
 def signout():
     return User().signout()
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8008)
+    app.run(port=8008, debug=True)

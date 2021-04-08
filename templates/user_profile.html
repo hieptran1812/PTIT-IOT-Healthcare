@@ -11,12 +11,12 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="/user_profile/{{name}}">
+    <a class="nav-link active" href="/user_profile/{{name['name']}}">
       <span data-feather="users"></span>
       Xem profile
     </a>
   </li>
-  {% if user['role']=='Admin'%}
+  {% if name['role']=='Admin'%}
   <li class="nav-item">
     <a class="nav-link" href="/adduser">
       <span data-feather="user-plus"></span>
@@ -193,6 +193,7 @@
                   />
                 </div>
               </div>
+              {% if name['role']!='Bác sĩ'%}
               <div
                 class="row pb-3 border-bottom d-flex align-items-center pt-3"
               >
@@ -208,6 +209,7 @@
                   />
                 </div>
               </div>
+              {% endif %}
               <div
                 class="row pb-3 border-bottom d-flex align-items-center pt-3"
               >

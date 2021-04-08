@@ -69,7 +69,9 @@ def user_profile(username):
     user = db.users.find_one({
         'username': username
     })
-    name = session['username']
+    name = db.users.find_one({
+        'username': session['username']
+    })
     if request.method == 'GET':
         return render_template('user_profile.html', user=user, name=name)
     if request.method == 'POST':

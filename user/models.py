@@ -127,7 +127,7 @@ class User:
     def updateUserReport(self, username): #update user in report
         user=self.userProperties
         userInDb = db.users.find_one({ # Tìm user trong database
-            'username': user['username']
+            'username': username
         })
         if userInDb:
             db.users.update_one(

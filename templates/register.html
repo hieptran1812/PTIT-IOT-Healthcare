@@ -3,6 +3,10 @@
   rel="stylesheet"
   id="bootstrap-css"
 />
+<link
+  rel="shortcut icon"
+  href="https://portal.ptit.edu.vn/wp-content/uploads/2016/04/favicon.png"
+/>
 <link href="../static/register.css" rel="stylesheet" />
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -41,18 +45,19 @@
       />
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label"><b>Mật khẩu</b></label>
+      <label for="password" class="form-label"><b>Mật khẩu</b></label>
       <input
         required="required"
         name="password"
         type="password"
         class="form-control"
-        id="exampleInputPassword1"
+        id="password"
+        onkeyup='check();'
         autofocus
       />
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label"
+      <label for="confirmPassword" class="form-label"
         ><b>Nhập lại mật khẩu</b></label
       >
       <input
@@ -60,17 +65,19 @@
         name="confirmPassword"
         type="password"
         class="form-control"
-        id="exampleInputPassword1"
+        id="confirmPassword"
+        onkeyup='check();'
         autofocus
       />
+      <span id='message'></span>
     </div>
     <div class="mb-3">
       <p class="form-label"><b>Giới tính</b></p>
-      <input type="radio" id="male" name="gender" value="male" />
+      <input type="radio" id="male" name="gender" value="Nam" />
       <label for="male">Nam</label><br />
-      <input type="radio" id="female" name="gender" value="female" />
+      <input type="radio" id="female" name="gender" value="Nữ" />
       <label for="female">Nữ</label><br />
-      <input type="radio" id="other" name="gender" value="other" />
+      <input type="radio" id="other" name="gender" value="Khác" />
       <label for="other">Khác</label>
     </div>
     <div class="mb-3">
@@ -106,3 +113,15 @@
   <!-- /form -->
 </div>
 <!-- ./container -->
+<script>
+  var check = function() {
+    if (document.getElementById('password').value ==
+      document.getElementById('confirmPassword').value) {
+      document.getElementById('message').style.color = 'green';
+      document.getElementById('message').innerHTML = 'Mật khẩu khớp';
+    } else {
+      document.getElementById('message').style.color = 'red';
+      document.getElementById('message').innerHTML = 'Mật khẩu chưa khớp';
+    }
+  }
+</script>

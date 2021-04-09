@@ -173,35 +173,77 @@
                     </div>
                   </div>
                   <br>
-                  <div class="table-responsive" style="display: inline-block; height: 300px; width: 100%;overflow-y: scroll"> 
+                  <div class="table-responsive" style="display: inline-block; height: 300px; width: 100%; overflow-y: scroll"> 
                     <table class="table table-bordered">
-                      <thead style="background-color: #c6dbf0;">
+                      <thead>
                         <tr>
-                          <th class="col-0.6">STT</th>
-                          <th class="col-1.5">Thời gian</th>
-                          <th class="col-2.5">Ho</th>
-                          <th>Ngáy</th>
-                          <th class="col-1.8">Nhịp thở</th>
-                          <th>Thở khò khè</th>
-                          <th>Rale</th>
-                          <th>Ghi chú</th>
+                          <th class="col-0.6" style="position: sticky; top:0; background-color: #c6dbf0">STT</th>
+                          <th class="col-1.5" style="position: sticky; top:0; background-color: #c6dbf0">Thời gian</th>
+                          <th class="col-1.5" style="position: sticky; top:0; background-color: #c6dbf0">Ho</th>
+                          <th style="position: sticky; top:0; background-color: #c6dbf0">Ngáy</th>
+                          <th class="col-2" style="position: sticky; top:0; background-color: #c6dbf0">Nhịp thở</th>
+                          <th class="col-1.5" style="position: sticky; top:0; background-color: #c6dbf0">Thở khò khè</th>
+                          <th style="position: sticky; top:0; background-color: #c6dbf0">Rale</th>
+                          <th style="position: sticky; top:0; background-color: #c6dbf0">Ghi chú</th>
+                          <th style="position: sticky; top:0; background-color: #c6dbf0">Hành động</th>
                         </tr>
                       </thead>
-                        <tbody>
-                          {% for index in range(35)%}
-                          <tr>
-                            <td>{{index+1}}</td>
-                            <td><input type="text" value="{{user['dayResearch'][index]}}" name="dayResearch", size="15", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['cough'][index]}}" name="cough", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['snore'][index]}}" name="snore", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['breathing'][index]}}" name="breathing", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['wheeze'][index]}}" name="wheeze", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['rale'][index]}}" name="rale", size="10", style="border:0; width: 100%"></td>
-                            <td><input type="text" value="{{user['note'][index]}}" name="note", size="10", style="border:0; width: 100%"></td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
+                      <tbody>
+                        {% for index in range(35)%}
+                          <tr class="time-record" onclick="{
+                            let timeRecords = document.querySelectorAll('.time-record');
+                            timeRecords = [...timeRecords];
+                            timeRecords.forEach((rc, i) => {
+                              const btn = rc.children[8];
+                              const editBtn = btn.children[0];
+                              const deleteBtn = btn.children[1];
+                              editBtn.addEventListener('click', () => {
+                                timeRecords[i].childNodes.forEach(td => {
+                                  if(td.lastChild) {
+                                    console.log(td.lastChild);
+                                    td.lastChild.disabled = false;
+                                  }
+                                })
+                              })
+                            })
+                          }">
+                          <td>{{index+1}}</td>
+                          <td><input type="text" value="{{user['dayResearch'][index]}}" name="dayResearch", size="15", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['cough'][index]}}" name="cough", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['snore'][index]}}" name="snore", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['breathing'][index]}}" name="breathing", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['wheeze'][index]}}" name="wheeze", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['rale'][index]}}" name="rale", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['note'][index]}}" name="note", size="10", style="border:0; width: 100%" disabled></td>
+                          <td>
+                            <a class="mx-1" title="Sửa">
+                              <span data-feather="edit"></span>
+                            </a>
+                            <a class="mx-3" title="Xóa">
+                              <span data-feather="trash-2"></span>
+                            </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
                     </table>
+                  </div>
+                  <div class="d-flex w-100 justify-content-center mt-3">
+                    <ul class="pagination" style="list-style: none">
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                   <div
                     class="row pb-3d-flex align-items-center pt-3"
@@ -214,32 +256,77 @@
                   <div class="table-responsive" style="display: inline-block; height: 300px; width: 100%;overflow-y: scroll"> 
                     <table class="table table-bordered">
                       <thead style="background-color: #c6dbf0;">
-                        <tr style="pointer-events: none">
-                          <th class="col-0.6">STT</th>
-                          <th class="col-1.5">Thời gian</th>
-                          <th class="col-2.5">Ho</th>
-                          <th>Ngáy</th>
-                          <th class="col-1.8">Nhịp thở</th>
-                          <th>Thở khò khè</th>
-                          <th>Rale</th>
-                          <th>Ghi chú</th>
+                        <tr>
+                          <th class="col-0.6" style="position: sticky; top:0; background-color: #c6dbf0">STT</th>
+                          <th class="col-1.5" style="position: sticky; top:0; background-color: #c6dbf0">Thời gian</th>
+                          <th class="col-1.5" style="position: sticky; top:0; background-color: #c6dbf0">Ho</th>
+                          <th style="position: sticky; top:0; background-color: #c6dbf0">Ngáy</th>
+                          <th class="col-2" style="position: sticky; top:0; background-color: #c6dbf0">Nhịp thở</th>
+                          <th class="col-1.5" style="position: sticky; top:0; background-color: #c6dbf0">Thở khò khè</th>
+                          <th style="position: sticky; top:0; background-color: #c6dbf0">Rale</th>
+                          <th style="position: sticky; top:0; background-color: #c6dbf0">Ghi chú</th>
+                          <th style="position: sticky; top:0; background-color: #c6dbf0">Hành động</th>
                         </tr>
                       </thead>
                       <tbody>
                         {% for index in range(40)%}
-                        <tr>
+                          <tr class="time-record" onclick="{
+                            let timeRecords = document.querySelectorAll('.time-record');
+                            timeRecords = [...timeRecords];
+                          
+                            timeRecords.forEach((rc, i) => {
+                              const btn = rc.children[8];
+                              const editBtn = btn.children[0];
+                              const deleteBtn = btn.children[1];
+                              editBtn.addEventListener('click', () => {
+                                timeRecords[i].childNodes.forEach(td => {
+                                  if(td.lastChild) {
+                                    console.log(td.lastChild);
+                                    td.lastChild.disabled = false;
+                                  }
+                                })
+                              })
+                            })
+                          }">
                           <td>{{index+1}}</td>
-                          <td><input type="text" value="{{user['dayResearch'][index+35]}}" name="dayResearch", size="15", style="border:0; width: 100%"></td>
-                          <td><input type="text" value="{{user['cough'][index+35]}}" name="cough", size="10", style="border:0; width: 100%"></td>
-                          <td><input type="text" value="{{user['snore'][index+35]}}" name="snore", size="10", style="border:0; width: 100%"></td>
-                          <td><input type="text" value="{{user['breathing'][index+35]}}" name="breathing", size="10", style="border:0; width: 100%"></td>
-                          <td><input type="text" value="{{user['wheeze'][index+35]}}" name="wheeze", size="10", style="border:0; width: 100%"></td>
-                          <td><input type="text" value="{{user['rale'][index+35]}}" name="rale", size="10", style="border:0; width: 100%"></td>
-                          <td><input type="text" value="{{user['note'][index+35]}}" name="note", size="10", style="border:0; width: 100%"></td>
+                          <td><input type="text" value="{{user['dayResearch'][index+35]}}" name="dayResearch", size="15", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['cough'][index+35]}}" name="cough", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['snore'][index+35]}}" name="snore", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['breathing'][index+35]}}" name="breathing", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['wheeze'][index+35]}}" name="wheeze", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['rale'][index+35]}}" name="rale", size="10", style="border:0; width: 100%" disabled></td>
+                          <td><input type="text" value="{{user['note'][index+35]}}" name="note", size="10", style="border:0; width: 100%" disabled></td>
+                          <td>
+                            <a class="mx-1" title="Sửa">
+                              <span data-feather="edit"></span>
+                            </a>
+                            <a class="mx-3" title="Xóa">
+                              <span data-feather="trash-2"></span>
+                            </a>
+                          </td>
                         </tr>
                         {% endfor %}
                       </tbody>
                     </table>
+                    <div class="d-flex w-100 justify-content-center mt-3">
+                  </div>
+                  </div>
+                  <div class="d-flex w-100 justify-content-center mt-3">
+                    <ul class="pagination" style="list-style: none">
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                   <br/>
                   <div style="text-align: center">
@@ -249,7 +336,7 @@
                   </div>
                 </form>
             {%endblock %}
-        </div>  
+        </div>
       </div>  
     </div>  
   </div>  

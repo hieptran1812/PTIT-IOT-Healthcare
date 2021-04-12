@@ -93,9 +93,10 @@ def report_patient(username):
 @app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân
 def urlPatient(tenloaigiamsat, username):
     name=session['username']
-    user_url = db.users.find_one({
+    user_url = db.users.find_one({ #
         'username': username
     })
+    print(tenloaigiamsat+"=========")
     url = None
     if tenloaigiamsat in ['nhiptho','tiengho','tiengwheeze','tiengrale','tiengngay']:
         if user_url['url'+tenloaigiamsat] is not None:
@@ -103,6 +104,7 @@ def urlPatient(tenloaigiamsat, username):
     users_patient = db.users.find({
         'role': 'Bệnh nhân'
     })
+    print(tenloaigiamsat+"=========")
     loaigiamsat = {
         'nhiptho': 'Nhịp thở',
         'tiengho': 'Tiếng ho',
@@ -110,9 +112,7 @@ def urlPatient(tenloaigiamsat, username):
         'tiengrale': 'Tiếng rale',
         'tiengngay': 'Tiếng ngáy',
     }
-    tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
-        tengiamsat = tenloaigiamsat
         return render_template('urlbenhnhan.html', tenloaigiamsat=tenloaigiamsat, username=username, giamsat=loaigiamsat, users=users_patient, url=url, user_url=user_url, name=name)
 
 @app.route('/delete/<username>', methods=['GET'])

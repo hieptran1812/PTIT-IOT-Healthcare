@@ -4,13 +4,17 @@
   href="../static/user_profile.css"
   />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="../static/datatable.css">
+
 <style>
   body {
     margin-top: 0;
     color: #1a202c;
     text-align: left;
     background-color: #e2e8f0;
-  } 
+  }
 </style>
 {% endblock %} {% block nav %}
 <ul class="nav flex-column">
@@ -82,16 +86,8 @@
   <span>Báo cáo</span>
   </a>
 </h6>
+
 {% endblock %} {% block content %}
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-<script
-  src="http://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../static/datatable.css">
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
 <div class="d-flex flex-column pt-3 pb-2 mb-3">
   <h1 class="h2 pb-4" style="text-align:center;">THEO DÕI CÁC TRIỆU CHỨNG HÔ HẤP THỰC NGHIỆM</h1>
   <div class="row gutters-sm">
@@ -141,19 +137,19 @@
             <div class="col-sm-2">
               <h5>1.3 Giới tính</h5>
             </div>
-            <div class="col-sm-2">
-              <input type="text", name="gender", class="border-info", value="{{user['gender']}}">
-            </div>
             <div class="col-sm-1">
+              <input type="text", name="gender", class="border-info", value="{{user['gender']}}", size="4">
+            </div>
+            <div class="col-sm-2">
               <h5>Dân tộc</h5>
             </div>
             <div class="col-sm-2">
-              <input type="text", name="ethnicGroup", class="border-info", value="{{user['ethnicGroup']}}">
+              <input type="text", name="ethnicGroup", class="border-info", value="{{user['ethnicGroup']}}", size="10">
             </div>
             <div class="col-sm-2">
               <h5>Mã số bệnh nhân</h5>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
               <input type="text", name="id", class="border-info", value="{{user['id']}}">
             </div>
           </div>
@@ -189,6 +185,10 @@
             </div>
           </div>
           <br>
+          <button id="addRowTable1" type="button" class="btn btn-primary mb-3" onclick="addRowTableOne()">
+            Thêm mới
+          </button>
+          <br>
           <div class="table-responsive" style="width: 100%;">
             <table id="table1" class="table table-bordered">
               <thead style="background-color: #c6dbf0;">
@@ -206,23 +206,7 @@
               </thead>
               <tbody>
                 {% for index in range(35)%}
-                <tr class="time-record" onclick="{
-                  let timeRecords = document.querySelectorAll('.time-record');
-                  timeRecords = [...timeRecords];
-                  timeRecords.forEach((rc, i) => {
-                  const btn = rc.children[8];
-                  const editBtn = btn.children[0];
-                  const deleteBtn = btn.children[1];
-                  editBtn.addEventListener('click', () => {
-                    timeRecords[i].childNodes.forEach(td => {
-                    if(td.lastChild) {
-                      console.log(td.lastChild);
-                      td.lastChild.readOnly = false;
-                    }
-                  })
-                  })
-                  })
-                  }">
+                <tr class="time-record" onclick="editButton()">
                   <td>{{index+1}}</td>
                   <td><input type="text" value="{{user['dayResearch'][index]}}" name="dayResearch", size="15", style="border:0; width: 100%" readonly="readonly"></td>
                   <td><input type="text" value="{{user['cough'][index]}}" name="cough", size="10", style="border:0; width: 100%" readonly></td>
@@ -232,12 +216,8 @@
                   <td><input type="text" value="{{user['rale'][index]}}" name="rale", size="10", style="border:0; width: 100%" readonly></td>
                   <td><input type="text" value="{{user['note'][index]}}" name="note", size="10", style="border:0; width: 100%" readonly></td>
                   <td>
-                    <a class="mx-1" title="Sửa">
-                    <span data-feather="edit" color="blue"></span>
-                    </a>
-                    <a class="mx-3" title="Xóa">
-                    <span data-feather="trash-2" color="red"></span>
-                    </a>
+                    <button class="mx-3" title="Sửa" data-feather="edit" color="blue"></button>
+                    <button class="btn_row_delete" data-feather="trash-2" color="red" title="Xóa"></button>
                   </td>
                 </tr>
                 {% endfor %}
@@ -249,6 +229,9 @@
               <h5 class="mb-0">Thử nghiệm không gắn máy</h5>
             </div>
           </div>
+          <button id="addRowTable2" type="button" class="btn btn-primary mb-3 mt-3" onclick="addRowTableTwo()">
+            Thêm mới
+          </button>
           <br/>
           <div class="table-responsive" style="width: 100%">
             <table id="table2" class="table table-bordered">
@@ -267,23 +250,7 @@
               </thead>
               <tbody>
                 {% for index in range(40)%}
-                <tr class="time-record" onclick="{
-                  let timeRecords = document.querySelectorAll('.time-record');
-                  timeRecords = [...timeRecords];
-                  timeRecords.forEach((rc, i) => {
-                  const btn = rc.children[8];
-                  const editBtn = btn.children[0];
-                  const deleteBtn = btn.children[1];
-                  editBtn.addEventListener('click', () => {
-                  timeRecords[i].childNodes.forEach(td => {
-                  if(td.lastChild) {
-                  console.log(td.lastChild);
-                  td.lastChild.readOnly = false;
-                  }
-                  })
-                  })
-                  })
-                  }">
+                <tr class="time-record" onclick="editButton()">
                   <td>{{index+1}}</td>
                   <td><input type="text" value="{{user['dayResearch'][index+35]}}" name="dayResearch", size="15", style="border:0; width: 100%" readonly="readonly"></td>
                   <td><input type="text" value="{{user['cough'][index+35]}}" name="cough", size="10", style="border:0; width: 100%" readonly></td>
@@ -293,12 +260,8 @@
                   <td><input type="text" value="{{user['rale'][index+35]}}" name="rale", size="10", style="border:0; width: 100%" readonly></td>
                   <td><input type="text" value="{{user['note'][index+35]}}" name="note", size="10", style="border:0; width: 100%" readonly></td>
                   <td>
-                    <a class="mx-1" title="Sửa">
-                    <span data-feather="edit" color="blue"></span>
-                    </a>
-                    <a class="mx-3" title="Xóa">
-                    <span data-feather="trash-2" color="red"></span>
-                    </a>
+                    <button class="mx-3" title="Sửa" data-feather="edit" color="blue"></button>
+                    <button class="btn_row_delete" data-feather="trash-2" color="red" title="Xóa"></button>
                   </td>
                 </tr>
                 {% endfor %}
@@ -308,7 +271,7 @@
           <br/>
           <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-secondary btn-block m-2" style="width:100px">
-            Cập nhật
+              Cập nhật
             </button>
           </div>
         </form>
@@ -317,6 +280,14 @@
     </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
 <script>
   $(document).ready(function() {
     $('#table1').DataTable({
@@ -334,7 +305,6 @@
         },
       }
     });
-    console.log($('#table1').DataTable().context[0].oLanguage)
   });
   $(document).ready(function() {
     $('#table2').DataTable({
@@ -353,5 +323,53 @@
       }
     });
   });
+  function addRowTableOne() {
+    var addRow = document.getElementById("table1");
+    addRow.innerHTML +=  `
+    <tr class="time-record" onclick='editButton()'>
+      <td><b>Thêm mới<b></td>
+      <td><input type="text" name="dayResearch", size="15", style="border:0; width: 100%"></td>
+      <td><input type="text" name="cough", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="snore", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="breathing", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="wheeze", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="rale", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="note", size="10", style="border:0; width: 100%"></td>
+      <td><b>Thêm mới<b></td>
+    </tr>`;
+    console.log(addRow)
+  }
+  function addRowTableTwo() {
+    var addRow = document.getElementById("table2");
+    addRow.innerHTML +=  `
+    <tr class="time-record" onclick='editButton()'>
+      <td><b>Thêm mới<b></td>
+      <td><input type="text" name="dayResearch", size="15", style="border:0; width: 100%"></td>
+      <td><input type="text" name="cough", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="snore", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="breathing", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="wheeze", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="rale", size="10", style="border:0; width: 100%"></td>
+      <td><input type="text" name="note", size="10", style="border:0; width: 100%"></td>
+      <td><b>Thêm mới<b></td>
+    </tr>`;
+    console.log(addRow)
+  }
+  function editButton(){
+    let timeRecords = document.querySelectorAll('.time-record');
+    timeRecords = [...timeRecords];
+    timeRecords.forEach((rc, i) => {
+      const btn = rc.children[8];
+      const editBtn = btn.children[0];
+      const deleteBtn = btn.children[1];
+      editBtn.addEventListener('click', () => {
+        timeRecords[i].childNodes.forEach(td => {
+          if(td.lastChild) {
+            td.lastChild.readOnly = false;
+          }
+        })
+      })
+    })
+  }
 </script>
 {% endblock %}

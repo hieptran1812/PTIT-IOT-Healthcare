@@ -208,13 +208,13 @@
                 {% for index in range(35)%}
                 <tr class="time-record" onclick="editButton()">
                   <td>{{index+1}}</td>
-                  <td><input type="text" value="{{user['dayResearch'][index]}}" name="dayResearch", size="15", style="border:0; width: 100%" readonly="readonly"></td>
-                  <td><input type="text" value="{{user['cough'][index]}}" name="cough", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['snore'][index]}}" name="snore", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['breathing'][index]}}" name="breathing", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['wheeze'][index]}}" name="wheeze", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['rale'][index]}}" name="rale", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['note'][index]}}" name="note", size="10", style="border:0; width: 100%" readonly></td>
+                  <td><input type="text" value="{{user['dayResearch'][index]}}" name="dayResearch", size="15", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['cough'][index]}}" name="cough", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['snore'][index]}}" name="snore", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['breathing'][index]}}" name="breathing", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['wheeze'][index]}}" name="wheeze", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['rale'][index]}}" name="rale", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['note'][index]}}" name="note", size="10", style="border:0; width: 100%"></td>
                   <td>
                     <button class="mx-3" title="Sửa" data-feather="edit" color="blue"></button>
                     <button class="btn_row_delete" data-feather="trash-2" color="red" title="Xóa"></button>
@@ -224,6 +224,8 @@
               </tbody>
             </table>
           </div>
+          <br>
+          <hr>
           <div class="row pb-3d-flex align-items-center pt-3">
             <div class="col-sm-3">
               <h5 class="mb-0">Thử nghiệm không gắn máy</h5>
@@ -252,13 +254,13 @@
                 {% for index in range(40)%}
                 <tr class="time-record" onclick="editButton()">
                   <td>{{index+1}}</td>
-                  <td><input type="text" value="{{user['dayResearch'][index+35]}}" name="dayResearch", size="15", style="border:0; width: 100%" readonly="readonly"></td>
-                  <td><input type="text" value="{{user['cough'][index+35]}}" name="cough", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['snore'][index+35]}}" name="snore", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['breathing'][index+35]}}" name="breathing", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['wheeze'][index+35]}}" name="wheeze", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['rale'][index+35]}}" name="rale", size="10", style="border:0; width: 100%" readonly></td>
-                  <td><input type="text" value="{{user['note'][index+35]}}" name="note", size="10", style="border:0; width: 100%" readonly></td>
+                  <td><input type="text" value="{{user['dayResearch'][index+35]}}" name="dayResearch", size="15", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['cough'][index+35]}}" name="cough", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['snore'][index+35]}}" name="snore", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['breathing'][index+35]}}" name="breathing", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['wheeze'][index+35]}}" name="wheeze", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['rale'][index+35]}}" name="rale", size="10", style="border:0; width: 100%"></td>
+                  <td><input type="text" value="{{user['note'][index+35]}}" name="note", size="10", style="border:0; width: 100%"></td>
                   <td>
                     <button class="mx-3" title="Sửa" data-feather="edit" color="blue"></button>
                     <button class="btn_row_delete" data-feather="trash-2" color="red" title="Xóa"></button>

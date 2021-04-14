@@ -139,6 +139,7 @@ class User:
                         'follow': request.form.get('follow'),#theo dõi từ ngày
                         'researchStaff': request.form.get('researchStaff'),#cán bộ nghiên cứu
                         'ethnicGroup': request.form.get('ethnicGroup'), #dân tộc
+                        'gender': request.form.get('gender'), #giới tính
                         'age': request.form.get('age'),
                         'department': request.form.get('department'),#khoa
                         'dayResearch': request.form.getlist('dayResearch'), #ngày thử nghiệm

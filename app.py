@@ -108,7 +108,7 @@ def urlPatient(tenloaigiamsat, username):
     loaigiamsat = {
         'nhiptho': 'Nhịp thở',
         'tiengho': 'Tiếng ho',
-        'tiengwheeze': 'Tiếng wheeze',
+        'tiengwheeze': 'Tiếng khò khè',
         'tiengrale': 'Tiếng rale',
         'tiengngay': 'Tiếng ngáy',
     }
@@ -137,7 +137,7 @@ def report():
     loaigiamsat = {
         'nhiptho': 'Nhịp thở',
         'tiengho': 'Tiếng ho',
-        'tiengwheeze': 'Tiếng wheeze',
+        'tiengwheeze': 'Tiếng khò khè',
         'tiengrale': 'Tiếng rale',
         'tiengngay': 'Tiếng ngáy',
     }
@@ -191,7 +191,7 @@ def giamsat(tenloaigiamsat):
     loaigiamsat = {
         'nhiptho': 'Nhịp thở',
         'tiengho': 'Tiếng ho',
-        'tiengwheeze': 'Tiếng wheeze',
+        'tiengwheeze': 'Tiếng khò khè',
         'tiengrale': 'Tiếng rale',
         'tiengngay': 'Tiếng ngáy',
     }

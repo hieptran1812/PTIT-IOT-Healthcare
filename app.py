@@ -96,7 +96,7 @@ def urlPatient(tenloaigiamsat, username):
     user_url = db.users.find_one({ #
         'username': username
     })
-    print(tenloaigiamsat+"=========")
+    print(tenloaigiamsat+"/n=========")
     url = None
     if tenloaigiamsat in ['nhiptho','tiengho','tiengwheeze','tiengrale','tiengngay']:
         if user_url['url'+tenloaigiamsat] is not None:
@@ -104,7 +104,7 @@ def urlPatient(tenloaigiamsat, username):
     users_patient = db.users.find({
         'role': 'Bệnh nhân'
     })
-    print(tenloaigiamsat+"=========")
+    print(tenloaigiamsat+"/n=========")
     loaigiamsat = {
         'nhiptho': 'Nhịp thở',
         'tiengho': 'Tiếng ho',

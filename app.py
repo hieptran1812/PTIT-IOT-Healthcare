@@ -31,6 +31,7 @@ def before_request():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    # User().editProfile()
     if request.method == 'POST':
         return User().login()
     else:

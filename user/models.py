@@ -159,3 +159,23 @@ class User:
             insertUser = db.users.insert_one(user)
             flash("Thêm thông tin bệnh nhân thành công!")
             return redirect('/report/' + username)
+
+    # def editProfile(self):
+    #     users = db.users.find({})
+    #     for user in users:
+    #         if user['role']=="Bệnh nhân":
+    #             if user['cough']=="Dương" or user['cough']=="dương":
+    #                 print('p')
+    #                 db.users.update_one(
+    #                 {"username": user['username']}, 
+    #                 {"$set":
+    #                     {
+    #                         'cough': 'Dương tính', #Ho
+    #                         # 'breathing': request.form.getlist('breathing'), #nhịp Thở
+    #                         # 'wheeze': request.form.getlist('wheeze'), #thở khò khè
+    #                         # 'rale': request.form.getlist('rale'), #rale
+    #                         # 'snore': request.form.getlist('snore'), #ngáy
+    #                     }
+    #                 }
+    #                 )
+    #                 print('update Cough')

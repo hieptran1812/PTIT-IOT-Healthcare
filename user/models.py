@@ -161,21 +161,24 @@ class User:
             return redirect('/report/' + username)
 
     # def editProfile(self):
+    #     cnt=0
     #     users = db.users.find({})
     #     for user in users:
     #         if user['role']=="Bệnh nhân":
-    #             if user['cough']=="Dương" or user['cough']=="dương":
-    #                 print('p')
-    #                 db.users.update_one(
-    #                 {"username": user['username']}, 
-    #                 {"$set":
-    #                     {
-    #                         'cough': 'Dương tính', #Ho
-    #                         # 'breathing': request.form.getlist('breathing'), #nhịp Thở
-    #                         # 'wheeze': request.form.getlist('wheeze'), #thở khò khè
-    #                         # 'rale': request.form.getlist('rale'), #rale
-    #                         # 'snore': request.form.getlist('snore'), #ngáy
-    #                     }
-    #                 }
-    #                 )
-    #                 print('update Cough')
+    #             for cnt,i in enumerate(user['cough']):
+    #                 # if "tính tính" in i:
+    #                 if i=="dương":
+    #                     print(i + "-" + user['username'])
+    #                     j='cough.'+str(cnt)
+    #                     print(j)
+    #                     db.users.update_one(
+    #                         {"username": user['username']}, 
+    #                         {"$set":
+    #                             {
+    #                                 j: i.replace("dương", "Dương tính"), #Ho
+    #                             }
+    #                         },
+                          
+    #                     )
+    #                     print(user['cough'])
+    #     return

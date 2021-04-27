@@ -165,20 +165,20 @@ class User:
     #     users = db.users.find({})
     #     for user in users:
     #         if user['role']=="Bệnh nhân":
-    #             for cnt,i in enumerate(user['cough']):
+    #             for cnt,i in enumerate(user['rale']):
     #                 # if "tính tính" in i:
-    #                 if i=="dương":
+    #                 if i=="âm":
     #                     print(i + "-" + user['username'])
-    #                     j='cough.'+str(cnt)
+    #                     j='rale.'+str(cnt)
     #                     print(j)
     #                     db.users.update_one(
     #                         {"username": user['username']}, 
     #                         {"$set":
     #                             {
-    #                                 j: i.replace("dương", "Dương tính"), #Ho
+    #                                 j: i.replace("âm", "Âm tính"), #Ho
     #                             }
     #                         },
                           
     #                     )
-    #                     print(user['cough'])
+    #                     print(user['rale'])
     #     return

@@ -61,7 +61,7 @@
 </h6>
 
 {% endblock %} {% block dashboard %} {% endblock %} {% block table %}
-<h2 class="border-bottom pb-3 mt-3">Danh sách bệnh nhân</h2>
+<h2 class="pb-3 mt-3">Danh sách bệnh nhân</h2>
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     <div class="alert alert-primary">
@@ -70,8 +70,8 @@
   {% endif %}
 {% endwith %}
 <div class="table-responsive">
-  <table class="table table-striped table-sm">
-    <thead>
+  <table id="table" class="table table-bordered table-striped table-sm">
+    <thead style="background-color: #c6dbf0;">
       <tr style="pointer-events: none">
         <th>STT</th>
         <th>Username</th>
@@ -110,3 +110,30 @@
   </table>
 </div>
 {% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#table').DataTable({
+      "oLanguage": {
+        "sInfo": 'Từ hàng _START_ đến hàng _END_ trên _TOTAL_ thông tin',
+        "sLengthMenu": "Hiện _MENU_ hàng",
+        "sSearch": "Tìm kiếm:",
+        "sInfoEmpty": 'Chưa có thông tin!',
+        "sEmptyTable": "Chưa có thông tin theo dõi hô hấp!",
+        "oPaginate":{
+          "sFirst": "Đầu",
+          "sLast": "Cuối",
+          "sNext": "Sau",
+          "sPrevious": "Trước",
+        },
+      }
+    });
+  });
+</script>

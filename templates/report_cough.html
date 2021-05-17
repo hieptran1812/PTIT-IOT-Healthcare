@@ -4,8 +4,6 @@
   href="../static/user_profile.css"
   />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="../static/datatable.css">
 
 <style>
@@ -212,7 +210,7 @@
               </thead>
               <tbody>
                 {% for index in range(35)%}
-                <tr class="time-record" onclick="editButton()">
+                <tr class="time-record">
                   <td>{{index+1}}</td>
                   <td><input type="text" value="{{user['dayResearch'][index]}}" name="dayResearch", size="15", style="border:0; width: 100%" readOnly></td>
                   <td><input type="text" value="{{user['cough'][index]}}" name="cough", size="10", style="border:0; width: 100%" readOnly></td>
@@ -222,7 +220,7 @@
                   <td><input type="text" value="{{user['rale'][index]}}" name="rale", size="10", style="border:0; width: 100%" readOnly></td>
                   <td><input type="text" value="{{user['note'][index]}}" name="note", size="10", style="border:0; width: 100%" readOnly></td>
                   <td>
-                    <button class="mx-3" title="Sửa" data-feather="edit" color="blue"></button>
+                    <button class="mx-3" title="Sửa" data-feather="edit" color="blue" onclick="editButton()"></button>
                     <button class="btn_row_delete" data-feather="trash-2" color="red" title="Xóa"></button>
                   </td>
                 </tr>
@@ -258,7 +256,7 @@
               </thead>
               <tbody>
                 {% for index in range(35)%}
-                <tr class="time-record" onclick="editButton()">
+                <tr class="time-record">
                   <td>{{index+1}}</td>
                   <td><input type="text" value="{{user['dayResearch'][index+35]}}" name="dayResearch", size="15", style="border:0; width: 100%" readOnly></td>
                   <td><input type="text" value="{{user['cough'][index+35]}}" name="cough", size="10", style="border:0; width: 100%" readOnly></td>
@@ -268,7 +266,7 @@
                   <td><input type="text" value="{{user['rale'][index+35]}}" name="rale", size="10", style="border:0; width: 100%" readOnly></td>
                   <td><input type="text" value="{{user['note'][index+35]}}" name="note", size="10", style="border:0; width: 100%" readOnly></td>
                   <td>
-                    <button class="mx-3" title="Sửa" data-feather="edit" color="blue"></button>
+                    <button class="mx-3" title="Sửa" data-feather="edit" color="blue" onclick="editButton()"></button>
                     <button class="btn_row_delete" data-feather="trash-2" color="red" title="Xóa"></button>
                   </td>
                 </tr>
@@ -374,6 +372,7 @@
         timeRecords[i].childNodes.forEach(td => {
           if(td.lastChild) {
             td.lastChild.readOnly = false;
+            console.log("Da sua btn!");
           }
         })
       })

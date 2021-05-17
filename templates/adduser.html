@@ -127,24 +127,16 @@
   </div>
   <div class="mb-3">
     <p class="form-label"><b>Giới tính</b></p>
-    <input type="radio" id="male" name="gender" value="Nam" />
-    <label for="male">Nam</label><br />
-    <input type="radio" id="female" name="gender" value="Nữ" />
-    <label for="female">Nữ</label><br />
+    <input type="radio" id="male" name="gender" value="Nam" autofocus/>
+    <label for="male">Nam</label>
+    <input type="radio" id="female" name="gender" value="Nữ" class="ml-5"/>
+    <label for="female" class="mr-5">Nữ</label>
     <input type="radio" id="other" name="gender" value="Khác" />
     <label for="other">Khác</label>
   </div>
   <div class="mb-3">
     <label for="birth" class="form-label"><b>Ngày sinh</b></label>
     <input name="birth" class="form-control" id="birth" />
-  </div>
-  <div class="mb-3">
-    <label for="job" class="form-label"><b>Nghề nghiệp</b></label>
-    <input name="job" class="form-control" id="job" />
-  </div>
-  <div class="mb-3">
-    <label for="inChargeDoctor" class="form-label"><b>Tên bác sĩ, y tá phụ trách</b></label>
-    <input name="inChargeDoctor" class="form-control" id="inChargeDoctor" />
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label"><b>Email</b></label>
@@ -158,6 +150,30 @@
   <div class="mb-3">
     <label for="phone" class="form-label"><b>Số điện thoại</b></label>
     <input name="phone" class="form-control" id="phone" />
+  </div>
+  <div class="mb-3">
+    <label for="address" class="form-label"><b>Địa chỉ</b></label>
+    <input name="address" class="form-control" id="address" />
+  </div>
+  <div class="mb-3">
+    <p class="form-label"><b>Vai trò</b></p>
+    <input type="radio" id="admin" name="role" value="Admin" autofocus/>
+    <label for="admin">Admin</label>
+    <input type="radio" id="doctor" name="role" value="Bác sĩ" class="ml-5"/>
+    <label for="doctor">Bác sĩ</label>
+    <input type="radio" id="patient" name="role" value="Bệnh nhân" class="ml-5"/>
+    <label for="patient">Bệnh nhân</label>
+    <input type="radio" id="familyPatient" name="role" value="Người nhà bệnh nhân" class="ml-5"/>
+    <label for="familyPatient">Người nhà bệnh nhân</label>
+  </div>
+  <div id="patientInfo"></div>
+  <div class="mb-3">
+    <label for="job" class="form-label"><b>Nghề nghiệp</b></label>
+    <input name="job" class="form-control" id="job" />
+  </div>
+  <div class="mb-3">
+    <label for="inChargeDoctor" class="form-label"><b>Tên bác sĩ, y tá phụ trách</b></label>
+    <input name="inChargeDoctor" class="form-control" id="inChargeDoctor" />
   </div>
   <div class="mb-3">
     <label for="dayPatient" class="form-label"><b>Ngày nhập viện</b></label>
@@ -217,26 +233,14 @@
       id="urltiengrale"
     />
   </div>
-  <div class="mb-3">
-    <p class="form-label"><b>Vai trò</b></p>
-    <input type="radio" id="admin" name="role" value="Admin" autofocus/>
-    <label for="admin">Admin</label><br />
-    <input type="radio" id="doctor" name="role" value="Bác sĩ" />
-    <label for="doctor">Bác sĩ</label><br />
-    <input type="radio" id="patient" name="role" value="Bệnh nhân" />
-    <label for="patient">Bệnh nhân</label>
-  </div>
-  <div class="mb-3">
-    <label for="address" class="form-label"><b>Địa chỉ</b></label>
-    <input name="address" class="form-control" id="address" />
-  </div>
+  <div id="infomation"></div>
   <div class="mb-3">
     <label for="note" class="form-label"><b>Ghi chú</b></label>
     <input name="note" class="form-control" id="note" />
   </div>
-  <div class="d-flex flex-column">
-    <button type="submit" class="btn btn-primary mb-3">Thêm người dùng</button>
+  <div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-primary mb-5">Thêm người dùng</button>
   </div>
 </form>
-
 {% endblock %}
+

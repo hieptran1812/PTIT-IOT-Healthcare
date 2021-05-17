@@ -1,0 +1,82 @@
+{% extends "user_profile.html" %} {% block nav %}
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link active">
+      <span data-feather="users"></span>
+      Hồ sơ của tôi
+    </a>
+  </li>
+</ul>
+<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+  <a style="text-decoration:none; color:blue" class="link-secondary" href="/report">
+  <span>Bệnh án người thân</span>
+  </a>
+</h6>
+{% endblock %} {% block form %}
+<div class="row pb-3 border-bottom d-flex align-items-center">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Họ và tên</h5>
+  </div>
+  <div class="col-sm-9">{{user['name']}}</div>
+</div>
+<div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Username</h5>
+  </div>
+  <div class="col-sm-9">{{user['username']}}</div>
+</div>
+<div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Ngày vào viện</h5>
+  </div>
+  <div class="col-sm-9">{{user['dayPatient']}}</div>
+</div>
+<div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Email</h5>
+  </div>
+  <div class="col-sm-9">{{user['email']}}</div>
+</div>
+<div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Giới tính</h5>
+  </div>
+  <div class="col-sm-9">{{user['gender']}}</div>
+</div>
+<div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Số điện thoại</h5>
+  </div>
+  <div class="col-sm-9">
+    <p class="mb-0">{{user['phone']}}</p>
+  </div>
+</div>
+<div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Triệu chứng</h5>
+  </div>
+  <div class="col-sm-9">
+    <p class="mb-0">{{user['symptom']}}</p>
+  </div>
+</div>
+<div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Họ tên người thân</h5>
+  </div>
+  <div class="col-sm-9">{{user['relatives']}}</div>
+</div>
+<div class="row pb-3 border-bottom d-flex align-items-center pt-3">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Số điện thoại người thân</h5>
+  </div>
+  <div class="col-sm-9">{{user['relativePhone']}}</div>
+</div>
+<div class="row pb-3 d-flex align-items-center pt-3">
+  <div class="col-sm-3">
+    <h5 class="mb-0">Địa chỉ</h5>
+  </div>
+  <div class="col-sm-9">
+    <p class="mb-0">{{user['address']}}</p>
+  </div>
+</div>
+{% endblock %}

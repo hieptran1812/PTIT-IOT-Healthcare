@@ -51,16 +51,21 @@ def dashboard():
     userInfo = db.users.find_one({
         'username': username
     })
-    if userInfo['role'] == 'Admin':
+    if userInfo['role'] == 'Admin': #vai trò là Admin
         users = db.users.find({})
         return render_template('dashboard.html', users = users, name=username)
-    elif userInfo['role'] == 'Bác sĩ':
+    elif userInfo['role'] == 'Bác sĩ': #vai trò là Bác sĩ
         patients = db.users.find({
             'role': 'Bệnh nhân'
         })
         return render_template('doctor.html', patients = patients, name=username)
-    else:
+    elif userInfo['role'] == 'Nguời nhà bệnh nhân': #vai trò là người nhà bệnh nhân
         user = db.users.find_one({
+            'username': username
+        })
+        return render_template('familyPatient.html', user = user, name=username)
+    else:
+        user = db.users.find_one({ #vai trò là bệnh nhân
             'username': username
         })
         return render_template('patient.html', user = user, name=username)
@@ -109,13 +114,7 @@ def urlPatient(tenloaigiamsat, username):
         'role': 'Bệnh nhân'
     })
     print(tenloaigiamsat+"\n=========")
-    loaigiamsat = {
-        'nhiptho': 'Nhịp thở',
-        'tiengho': 'Tiếng ho',
-        'tiengwheeze': 'Tiếng khò khè',
-        'tiengrale': 'Tiếng rale',
-        'tiengngay': 'Tiếng ngáy',
-    }
+    loaigiamsat = {'nhiptho': 'Nhịp thở', 'tiengho': 'Tiếng ho', 'tiengwheeze': 'Tiếng khò khè', 'tiengrale': 'Tiếng rale', 'tiengngay': 'Tiếng ngáy',}
     if tenloaigiamsat in loaigiamsat:
         return render_template('urlbenhnhan.html', tenloaigiamsat=tenloaigiamsat, username=username, giamsat=loaigiamsat, users=users_patient, url=url, user_url=user_url, name=name)
 
@@ -138,13 +137,7 @@ def report():
     users = db.users.find({
         'role': 'Bệnh nhân'
     })
-    loaigiamsat = {
-        'nhiptho': 'Nhịp thở',
-        'tiengho': 'Tiếng ho',
-        'tiengwheeze': 'Tiếng khò khè',
-        'tiengrale': 'Tiếng rale',
-        'tiengngay': 'Tiếng ngáy',
-    }
+    loaigiamsat = {'nhiptho': 'Nhịp thở', 'tiengho': 'Tiếng ho', 'tiengwheeze': 'Tiếng khò khè', 'tiengrale': 'Tiếng rale', 'tiengngay': 'Tiếng ngáy',}
     wb = Workbook() 
     # add_sheet is used to create sheet. 
     sheet1 = wb.add_sheet('Báo cáo') 

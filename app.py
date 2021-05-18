@@ -59,16 +59,27 @@ def dashboard():
             'role': 'Bệnh nhân'
         })
         return render_template('doctor.html', patients = patients, name=username)
-    elif userInfo['role'] == 'Nguời nhà bệnh nhân': #vai trò là người nhà bệnh nhân
-        user = db.users.find_one({
-            'username': username
-        })
-        return render_template('familyPatient.html', user = user, name=username)
     else:
         user = db.users.find_one({ #vai trò là bệnh nhân
             'username': username
         })
         return render_template('patient.html', user = user, name=username)
+
+@app.route('/familypatient', methods=['GET'])
+def familyPatient():
+    username = session['username']
+    user = db.users.find_one({
+        'username': username
+    })
+    return render_template('/familyPatient/familyPatient.html', user = user, name=username)
+
+@app.route('/report/familypatient/vvhue01', methods=['GET'])
+def reportfamilyPatient():
+    username = session['username']
+    user = db.users.find_one({
+        'username': 'vvhue01'
+    })
+    return render_template('/familyPatient/reportfamilyPatient.html', user = user, name=username, username='vvhue01')
 
 @app.route('/user_profile/<username>', methods=['GET', 'POST']) # xem profile bệnh nhân và update user profile
 def user_profile(username):
@@ -185,13 +196,7 @@ def giamsat(tenloaigiamsat):
         'role': 'Bệnh nhân'
     })
     print(users)
-    loaigiamsat = {
-        'nhiptho': 'Nhịp thở',
-        'tiengho': 'Tiếng ho',
-        'tiengwheeze': 'Tiếng khò khè',
-        'tiengrale': 'Tiếng rale',
-        'tiengngay': 'Tiếng ngáy',
-    }
+    loaigiamsat = {'nhiptho': 'Nhịp thở', 'tiengho': 'Tiếng ho', 'tiengwheeze': 'Tiếng khò khè', 'tiengrale': 'Tiếng rale', 'tiengngay': 'Tiếng ngáy',}
     tengiamsat = None
     if tenloaigiamsat in loaigiamsat:
         tengiamsat = tenloaigiamsat

@@ -143,7 +143,7 @@ class User:
                         'researchStaff': request.form.get('researchStaff'),#cán bộ nghiên cứu
                         'ethnicGroup': request.form.get('ethnicGroup'), #dân tộc
                         'gender': request.form.get('gender'), #giới tính
-                        'age': request.form.get('age'),
+                        'age': request.form.get('age'), #tuổi
                         'department': request.form.get('department'),#khoa
                         'dayResearch': request.form.getlist('dayResearch'), #ngày thử nghiệm
                         'dayPatient': request.form.get('dayPatient'), #ngày nhập viện
@@ -152,7 +152,7 @@ class User:
                         'wheeze': request.form.getlist('wheeze'), #thở khò khè
                         'rale': request.form.getlist('rale'), #rale
                         'snore': request.form.getlist('snore'), #ngáy
-                        'note': request.form.getlist('note'),
+                        'note': request.form.getlist('note'), #ghi chú
                     }
                 }
             )

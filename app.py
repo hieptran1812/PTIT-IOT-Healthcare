@@ -109,7 +109,6 @@ def report_patient(username):
         
 @app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân
 def urlPatient(tenloaigiamsat, username):
-    # name=session['username'] #tên đăng nhập của người đăng nhập
     name = db.users.find_one({ 
         'username': session['username']
     })

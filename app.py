@@ -1,5 +1,5 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 from flask import Flask, render_template, request, redirect, url_for, session
 from user.models import User, db
 import bcrypt

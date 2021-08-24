@@ -51,16 +51,16 @@ def dashboard():
     userInfo = db.users.find_one({
         'username': username
     })
-    if userInfo['role'] == 'Admin': #vai trò là Admin
+    if userInfo['role'] == 'Admin': 
         users = db.users.find({})
         return render_template('dashboard.html', users = users, name=username)
-    elif userInfo['role'] == 'Bác sĩ': #vai trò là Bác sĩ
+    elif userInfo['role'] == 'Bác sĩ': 
         patients = db.users.find({
             'role': 'Bệnh nhân'
         })
         return render_template('doctor.html', patients = patients, name=username)
     else:
-        user = db.users.find_one({ #vai trò là bệnh nhân
+        user = db.users.find_one({ 
             'username': username
         })
         return render_template('patient.html', user = user, name=username)
@@ -81,7 +81,7 @@ def reportfamilyPatient():
     })
     return render_template('/familyPatient/reportfamilyPatient.html', user = user, name=username, username='vvhue01')
 
-@app.route('/user_profile/<username>', methods=['GET', 'POST']) # xem profile bệnh nhân và update user profile
+@app.route('/user_profile/<username>', methods=['GET', 'POST']) # xem profile benh nhan va update profile user
 def user_profile(username):
     user = db.users.find_one({
         'username': username
@@ -107,7 +107,7 @@ def report_patient(username):
     if request.method == 'POST':
         return User().updateUserReport(username)
         
-@app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url của bệnh nhân
+@app.route('/<tenloaigiamsat>/<username>', methods=['GET']) #link xem url cua benh nhan
 def urlPatient(tenloaigiamsat, username):
     name = db.users.find_one({ 
         'username': session['username']
